@@ -1,0 +1,273 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pass",
+				"passwordEncoder"
+			],
+			[
+				"Form",
+				"FormFactoryInterface"
+			],
+			[
+				"Register",
+				"RegisterTypeHandler"
+			],
+			[
+				"form",
+				"formFactory"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"Even",
+				"EventDispatcher"
+			],
+			[
+				"h",
+				"helper"
+			],
+			[
+				"Aut",
+				"AuthenticationUtils"
+			],
+			[
+				"login",
+				"login_security"
+			],
+			[
+				"se",
+				"security"
+			],
+			[
+				"he",
+				"header\tTag"
+			],
+			[
+				"C",
+				"Controller"
+			],
+			[
+				"S",
+				"Symfony"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"control",
+				"Package Control: Install Package"
+			],
+			[
+				"INST",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 158.0,
+		"history":
+		[
+			"Package Control.sublime-package",
+			"control",
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/wamp/www/my-project/templates/base.html.twig",
+		"/C/wamp/www/my-project/templates/register/register.html.twig",
+		"/C/wamp/www/my-project/config/packages/sensio_framework_extra.yaml",
+		"/C/wamp/www/my-project/src/Controller/RegisterController.php",
+		"/C/wamp/www/my-project/templates/logs/login.html.twig",
+		"/C/wamp/www/my-project/templates/index.html.twig",
+		"/C/wamp/www/my-project/src/Entity/Announce.php",
+		"/C/wamp/www/my-project/src/Events.php",
+		"/C/wamp/www/my-project/src/Events/RegisterNotify.php",
+		"/C/wamp/www/my-project/templates/Admin/index.html.twig",
+		"/C/wamp/www/my-project/assets/js/app.js",
+		"/C/wamp/www/my-project/src/Controller/DefaultController.php",
+		"/C/Users/Clark/Documents/IMG_20180807_0003.pdf",
+		"/C/wamp/www/my-project/package.json",
+		"/C/wamp/www/my-project/webpack.config.js",
+		"/C/wamp/www/my-project/config/services.yaml",
+		"/C/wamp/www/my-project/config/packages/security.yaml",
+		"/C/wamp/www/my-project/assets/scss/app.scss",
+		"/C/wamp/www/my-project/assets/css/global.scss",
+		"/C/wamp/www/my-project/package-lock.json",
+		"/C/wamp/www/my-project/composer.json",
+		"/C/wamp/www/my-project/src/Form/UserType.php",
+		"/C/wamp/www/my-project/src/Controller/SecurityController.php",
+		"/C/wamp/www/my-project/src/Controller/AdminController.php",
+		"/C/wamp/www/my-project/src/Controller/IndexController.php",
+		"/C/wamp/www/my-project/config/packages/twig.yaml",
+		"/C/wamp/www/my-project/src/Form/AnnounceType.php",
+		"/C/wamp/www/my-project/src/Entity/User.php",
+		"/C/wamp/www/my-project/config/routes.yaml",
+		"/C/wamp/www/my-project/config/packages/routing.yaml",
+		"/C/wamp/www/my-project/.env",
+		"/C/wamp/www/my-project/var/log/dev.log",
+		"/C/wamp/www/my-project/config/packages/framework.yaml",
+		"/C/wamp/www/my-project/templates/test/test.html.twig",
+		"/C/wamp/www/my-project/src/Controller/Test2Controller.php",
+		"/C/wamp/www/my-project/src/Entity/Test.php",
+		"/C/wamp/www/my-project/vendor/symfony/framework-bundle/Tests/Controller/ControllerResolverTest.php",
+		"/C/wamp/www/my-project/config/packages/doctrine.yaml"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 40.6666666667
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": ".gitignore.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 236.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
