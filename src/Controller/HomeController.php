@@ -20,5 +20,5 @@
 			$this->twig = $twig;
 		}
 
-		return new Response($this->twig->render('home.html.twig'));
+		return new Response($this->twig->render('home.html.twig'));//hello
 	}
