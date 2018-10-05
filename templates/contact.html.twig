@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire de Contact{% endblock %}
+
+{% block body %}
+	<header><h1>Veuillez remplir le formulaire</h1></header>
+
+	{{ form_start(form) }}
+	{{ form_row(form.username) }}
+	{{ form_row(form.message) }}
+	{{ form_row(form.from.first) }}
+	{{ form_row(form.from.second) }}
+
+	<input type="submit" name="Contact">
+{{ form_end(form) }}
+{% endblock %}
