@@ -5,12 +5,13 @@
 {% block body %}
 	<header><h1>Veuillez remplir le formulaire</h1></header>
 
+	{# Formulaire de contact #}
 	{{ form_start(form) }}
 	{{ form_row(form.username) }}
 	{{ form_row(form.message) }}
 	{{ form_row(form.from.first) }}
 	{{ form_row(form.from.second) }}
 
-	<input type="submit" name="Contact">
+	<button type="submit" name="Contact"></button>
 {{ form_end(form) }}
 {% endblock %}

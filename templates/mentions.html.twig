@@ -1,5 +1,73 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	
+	{#Header#}
+    <body class="text-center">
+
+        <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+            <header class="masthead mb-auto">
+                <div class="inner">
+                  <h3 class="masthead-brand">Mentions légales</h3>
+                  <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link active" href="#">Home</a>
+                    <a class="nav-link" href="/billeterie">Billeterie en ligne</a>
+                    <a class="nav-link" href="/mentions">Mentions légales</a>
+                    <a class="nav-link" href="/contact">Contact</a>
+                  </nav>
+                </div>
+            </header>
+            {#BodyContainer#}
+            <div class="container">
+                <div class="row col-lg-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title text-center">1 - Objet</h3>
+                                </div>
+                                <div class="panel-body text-center">
+                                    <p>
+                                       Les présentes conditions générales de vente ont pour objet de définir les dispositions contractuelles entre l'Etablissement Public du fictif Musée du Louvre,</br>
+                                        Etablissement public à caractère administratif regroupant le fictif musée national du Louvre et le fictif musée national Eugène Delacroix, conformément aux dispositions du décret n° xx-xxx du 01/01/2018 modifié portant création de l'Etablissement Public du fictif Musée du Louvre.</br>
+                                        Siret n° xxx xxx xxx xxx xx - APE n° APE xxxxx.</br>
+                                        Domicilié fictif Musée du Louvre - 75058 Paris Cedex 01 – France.</br>
+                                        Contrat commerçant : xxxxxx EPML DE INTERNET</br>
+                                        et toute personne physique ou morale (ci-après dénommée l'acheteur) achetant des billets individuels sur le site de vente en ligne de billets « www.billeterieenligne.fr ». 
+                                    </p>
+                                    <p>
+                                        L’acheteur reconnaît avoir pris connaissance des présentes conditions générales de vente préalablement à la validation de sa commande. Le fait de passer commande vaut acceptation par l’acheteur des présentes conditions générales de vente. 
+                                    </p>
+                                    <p>
+                                        L’EPML se réserve la possibilité d'adapter ou de modifier à tout moment les présentes conditions générales de vente. En cas de modification, les conditions applicables à un achat sont celles en vigueur au jour de la commande. 
+                                    </p>
+                                </div>
+                            </div>
+                </div>
+
+                <div class="row col-lg-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title text-center">2 - Champ d’application des présentes conditions générales de vente</h3>
+                                </div>
+                                <div class="panel-body text-center">
+                                    <p>
+                                       Sont proposés sur le site « www.billeterieenligne.fr » de vente en ligne des billets pour les prestations suivantes : </br>
+                                        Fictif Musée du Louvre, permettant l’accès aux collections permanentes et expositions temporaires du musée du Louvre, donnant également accès aux collections et expositions temporaires du fictif musée Eugène Delacroix et à l'antenne du musée du quai Branly au Louvre.
+                                        Audioguide, correspondant à la location de l’audioguide du musée du Louvre et permettant de le retirer aux comptoirs de distribution situés aux entrées des collections. Un document d’identité en cours de validité sera demandé en dépôt lors du retrait de l’audioguide.
+                                    </p>
+                                    <p>
+                                        Le site Internet informe l’acheteur de la disponibilité des prestations au moment de la passation de la commande.
+                                    </p>
+                                    <p>
+                                        Le nombre de billets vendus en ligne par commande et par personne est limité comme suit : 
+                                    </p>
+                                </div>
+                            </div>
+                </div>
+            {#Footer#}
+            <footer class="mastfoot mt-auto">
+                <div class="inner">
+                    <p class="copyright text-muted">Copyright &copy; Site fictif pour Openclassrooms, par Emmanuel Auguier</p>
+                </div>
+            </footer>
+        </div>
+    </body>
 {% endblock %}

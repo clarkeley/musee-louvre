@@ -1,50 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	{# Page Header #}
-    <header class="home-header" style="">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1>Home</h1>
-                        <hr class="small">
-                        <span class="subheading">Emmanuel Auguier pour Openclassrooms</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+	{#Header#}
+	<body class="text-center">
 
-    {# Footer #}
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="/billeterie">Billeterie en ligne</a>
-                        </li>
-                        <li>
-                            <a href="/mentions">Mentions légales</a>
-                        </li>
-                        <li>
-                            <a href="/contact">Contact</a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; Site fictif pour apprentissage</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-	{# Cookie Consent#}
-	<div class="alert alert-dismissible text-center cookiealert" role="alert">
-	  <div class="cookiealert-container">
-	    <b>Do you like cookies?</b> &#x1F36A; We use cookies to ensure you get the best experience on our website. <a href="#" target="_blank">Learn more</a>
-	    <button type="button" class="btn btn-primary btn-sm acceptcookies" aria-label="Close">
-	        I agree
-	    </button>
-	  </div>
-	</div>
+		<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+	    	<header class="masthead mb-auto">
+		        <div class="inner">
+		          <h3 class="masthead-brand">Home</h3>
+		          <nav class="nav nav-masthead justify-content-center">
+		            <a class="nav-link active" href="#">Home</a>
+		            <a class="nav-link" href="/billeterie">Billeterie en ligne</a>
+		            <a class="nav-link" href="/mentions">Mentions légales</a>
+		            <a class="nav-link" href="/contact">Contact</a>
+		          </nav>
+		        </div>
+	    	</header>
+			{#CookieAlert#}
+		    <div class="alert alert-dismissible text-center cookiealert" role="alert">
+				<div class="cookiealert-container">
+				    <b>Do you like cookies?</b> &#x1F36A; We use cookies to ensure you get the best experience on our website. <a href="/mentions" target="_blank">Learn more</a>
+				    <button type="button" class="btn btn-primary btn-sm acceptcookies" aria-label="Close">
+				        I agree
+				    </button>
+				</div>
+			</div>
+			{#Footer#}
+		    <footer class="mastfoot mt-auto">
+		    	<div class="inner">
+		        	<p class="copyright text-muted">Copyright &copy; Site fictif pour Openclassrooms, par Emmanuel Auguier</p>
+		        </div>
+		    </footer>
+	    </div>
+	</body>
 {% endblock %}
