@@ -19,7 +19,7 @@
      * @Route("/contact", name="contact")
      */
     class ContactController extends Controller
-    {
+    {/*
         private $formHandler;
         private $formFactory;
         private $twig;
@@ -43,5 +43,5 @@
             }
             
             return new Response($this->twig->render('contact.html.twig', array('form' => $form->createView())));
-        }
+        }*/
     }

@@ -8,7 +8,7 @@
       use Symfony\Component\EventDispatcher\GenericEvent;
 
       final class ContactTypeHandler
-      {
+      {/*
 
       	public function handle(FormInterface $form) : bool
       	{
@@ -29,5 +29,5 @@
               }
 
       		return false;
-      	}
+      	}*/
       }

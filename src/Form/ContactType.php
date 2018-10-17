@@ -12,7 +12,7 @@
     use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
     class ContactType extends AbstractType
-    {
+    {/*
         public function buildForm(FormBuilderInterface $builder, array $options)
         {
             $builder
@@ -31,5 +31,5 @@
             $resolver->setDefaults(array(
                 'data_class' => Contact::class,
             ));
-        }
+        }*/
     }
