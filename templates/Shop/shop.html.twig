@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<body class="text-center">
+
+		<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+	    	<header class="masthead mb-auto">
+		        <div class="inner">
+		          <h3 class="masthead-brand">Home</h3>
+		          <nav class="nav nav-masthead justify-content-center">
+		            <a class="nav-link active" href="#">Home</a>
+		            <a class="nav-link" href="/billetterie">Billetterie en ligne</a>
+		            <a class="nav-link" href="/mentions">Mentions légales</a>
+		            <a class="nav-link" href="/contact">Contact</a>
+		          </nav>
+		        </div>
+	    	</header>
+	    </div>
+
+		<input type="text" name="birthday" value="01/01/1901">
+		
+	</body>
+
+{% endblock %}
+
+	{% block javascripts %}
+		<script>
+            $(function () {
+                $('input[name = "birthday"]').daterangepicker({
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    minYear: 1901,
+                    maxYear: parseInt(moment().format('YYYY'), 10)
+                }, function(start, end, label){
+                	var years = moment().diff(start, 'years');
+                	alert("Validate");
+                });
+            }); //onClik event (réductions, etc..) .clik .show
+        </script>
+	{% endblock %}

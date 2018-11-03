@@ -3,24 +3,36 @@
       namespace App\Form\FormHandler;
 
       use Symfony\Component\Form\FormInterface;
-      use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-      use Symfony\Component\EventDispatcher\EventDispatcher;
-      use Symfony\Component\EventDispatcher\GenericEvent;
+      use Symfony\Component\Form\ContactType;
 
       final class ContactTypeHandler
-      {/*
+      {
 
       	public function handle(FormInterface $form) : bool
       	{
       		if ($form->isSubmitted() && $form->isValid()) {
 
-                  $entityManager = $this->getDoctrine()->getManager();//
-                  $entityManager->persist($contact);
-                  $entityManager->flush();
+                  /*$builder = $form->getData();
+                  $mailer = new Swift_Mailer($transport);
+                  $transport
 
-                  $event = new GenericEvent($contact);
-                  $eventDispatcher = new EventDispatcher();//
-                  $eventDispatcher->dispatch(Events::CONTACT_REGISTERED, $contact);
+                  $builder = new \Swift_Message::newInstance();
+                  $this->get('mailer')->send($builder);
+
+                  $message = (new \Swift_Message('ContactMail'))
+                        ->setSubject('Contact Form', form.username)
+                        ->setFrom(form.email)
+                        ->setBody(form.message)
+
+                  //$result = $mailer->send($message);
+
+                  //$request->getSession()->getFlashBag()->add('notice', 'Form has been sent');
+
+                  //return true;
+                  //$form->getData();*/
+
+                 // $builder = new \Swift_Message::newInstance();
+                  $this->get('mailer')->send($builder);
 
                   $request->getSession()->getFlashBag()->add('notice', 'Form has been sent');
 
@@ -29,5 +41,5 @@
               }
 
       		return false;
-      	}*/
+      	}
       }
