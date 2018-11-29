@@ -2,17 +2,14 @@
 
     namespace App\Controller;
 
-    use App\Form\ContactType;
     use App\Events;
+    use App\Form\ContactType;
+    use App\Form\FormHandler\ContactTypeHandler;
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+    use Symfony\Component\Form\FormFactoryInterface;
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
     use Symfony\Component\Routing\Annotation\Route;
-    use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-    use Symfony\Component\EventDispatcher\EventDispatcher;
-    use Symfony\Component\EventDispatcher\GenericEvent;
-    use Symfony\Component\Form\FormFactoryInterface;
-    use App\Form\FormHandler\ContactTypeHandler;
     use Twig\Environment;
 
     /**

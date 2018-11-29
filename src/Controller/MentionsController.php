@@ -20,7 +20,14 @@
 			$this->twig = $twig;
 		}
 
-		public function __invoke(Request $request): Response
+        /**
+         * @param Request $request
+         * @return Response
+         * @throws \Twig_Error_Loader
+         * @throws \Twig_Error_Runtime
+         * @throws \Twig_Error_Syntax
+         */
+        public function __invoke(Request $request): Response
 		{
 			return new Response($this->twig->render('mentions.html.twig'));
 		}

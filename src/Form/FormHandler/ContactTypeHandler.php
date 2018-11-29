@@ -8,20 +8,29 @@
       final class ContactTypeHandler
       {
 
-      	public function handle(FormInterface $form) : bool //\Swift_Mailer $mailer
+            /** @var \Swift_Mailer [description] */
+            private $mailer;
+
+            public function __construct(\Swift_Mailer $mailer)
+            {
+                  $this->mailer = $mailer;
+            }
+
+      	public function handle(FormInterface $form) : bool
       	{
       		if ($form->isSubmitted() && $form->isValid()) {
 
-                  /*$builder = $form->getData();
+                  $builder = $form->getData();
 
                   $message = (new \Swift_Message('ContactMail'))
-                        ->setSubject('Contact Form', form.username)
-                        ->setFrom(form.email)
-                        ->setBody(form.message)
+                        ->setSubject('Contact Form '.$builder['username'])
+                        ->setFrom($builder['from'])
+                        ->setTo('aemmanuel.project@gmail.com')
+                        ->setBody($builder['message'])
+                        ;
 
-                  $mailer->send($message);
+                  $this->mailer->send($message);
 
-                  $request->getSession()->getFlashBag()->add('notice', 'Form has been sent');*/
 
                   return true;
                   }

@@ -3,22 +3,8 @@
 {% block title %}Formulaire de Contact{% endblock %}
 
 {% block body %}
-	<img src="{{ asset('Louvre_Museum_Wikimedia_Commons.jpg') }}" class="img-fluid" alt="Responsive image">
 
 	<body class="text-center">
-
-		<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-	    	<header class="masthead mb-auto">
-		        <div class="inner">
-		          <h3 class="masthead-brand">Home</h3>
-		          <nav class="nav nav-masthead justify-content-center">
-		            <a class="nav-link active" href="/">Home</a>
-		            <a class="nav-link" href="/billetterie">Billetterie en ligne</a>
-		            <a class="nav-link" href="/mentions">Mentions légales</a>
-		            <a class="nav-link" href="/contact">Contact</a>
-		          </nav>
-		        </div>
-	    	</header>
 
 			{# Formulaire de contact #}
 			{{ form_start(form) }} 
@@ -28,7 +14,7 @@
             			Veuillez remplir le formulaire
         			</div>
         			<div class="card-block">
-        				<form>
+
         					<div class="form-group">
         						{{ form_row(form.username) }}
         					</div>
@@ -39,19 +25,11 @@
         						{{ form_row(form.message) }}
         					</div>
         					<button type="submit" class="btn btn-primary">Envoyer</button>
-        				</form>
+
         			</div>
     			</div>
 			</div>
-			{{ form_end(form) }} 
-			
-			{#Footer#}
-		    <footer class="mastfoot mt-auto">
-		    	<div class="inner">
-		        	<p class="copyright text-muted">Copyright &copy; Site fictif pour Openclassrooms, par Emmanuel Auguier</p>
-		        </div>
-		    </footer>
-	    </div>
+			{{ form_end(form) }}
 	</body>
 
 {% endblock %}
