@@ -2,25 +2,24 @@
 
 namespace App\Form\FormHandler;
 
+use http\Env\Response;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\ShopType;
 
 final class ShopTypeHandler
 {
-
-    private $mailer;
-
-    public function __construct(\Swift_Mailer $mailer)
-    {
-        $this->mailer = $mailer;
-    }
-
-    public function handle(FormInterface $form) : bool
+    public function handle(FormInterface $form) : Response
     {
         if ($form->isSubmitted() && $form->isValid()) {
-            return true;
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($order);
+            $entityManager->flush();
+
+            return new Response('Saved new order, ref: '.$order->getRefOrder());
         }
 
         return false;
     }
+
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Order;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -49,8 +50,8 @@ class ShopType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'error_building' => true
-        ));
+        $resolver->setDefaults([
+            'data_class' => Order::class,
+        ]);
     }
 }

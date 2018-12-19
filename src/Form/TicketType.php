@@ -9,7 +9,7 @@
 namespace App\Form;
 
 
-class BookingType
+class TicketType
 {
 
 }

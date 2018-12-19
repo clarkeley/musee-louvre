@@ -1,29 +1,36 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}La Billetterie{% endblock %}
+
 {% block body %}
 
-	<body class="text-center">
+<body class="text-center">
+    {{ form_start(form) }}
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Première étape
+            </div>
+            <div class="card-block">
 
-		<div class="container">
-			<div class="col-sm-6">
-				<div class="form-group">
-					<div class="input-group date" id="datetimepicker12" data-target-input="nearest">
-						<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker12"/>
-						<div class="input-group-append" data-target="#datetimepicker12" data-toggle="datetimepicker">
-							<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<script type="text/javascript">
-				$(function () {
-					$('#datetimepicker12').datetimepicker({
-						daysOfWeekDisabled: [0, 7]
-					});
-				});
-			</script>
-		</div>
-		
-	</body>
+                <div class="form-group">
+                    {{ form_row(form.date) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.billet_type) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.billet_number) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.from) }}
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
 
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>
 {% endblock %}
+
