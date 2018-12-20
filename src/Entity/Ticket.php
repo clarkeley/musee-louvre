@@ -19,60 +19,82 @@ class Ticket
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $ticketName;
+    private $fisrtName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $ticketPays;
+    private $lastName;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $country;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $ticketDate;
+    private $birthday;
 
     /**
      * @ORM\Column(type="float")
      */
     private $rate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="tickets")
+     */
+    private $order;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTicketName(): ?string
+    public function getFisrtName(): ?string
     {
-        return $this->ticketName;
+        return $this->fisrtName;
     }
 
-    public function setTicketName(string $ticketName): self
+    public function setFisrtName(string $fisrtName): self
     {
-        $this->ticketName = $ticketName;
+        $this->fisrtName = $fisrtName;
 
         return $this;
     }
 
-    public function getTicketPays(): ?string
+    public function getLastName(): ?string
     {
-        return $this->ticketPays;
+        return $this->lastName;
     }
 
-    public function setTicketPays(string $ticketPays): self
+    public function setLastName(string $lastName): self
     {
-        $this->ticketPays = $ticketPays;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function getTicketDate(): ?\DateTimeInterface
+    public function getCountry(): ?string
     {
-        return $this->ticketDate;
+        return $this->country;
     }
 
-    public function setTicketDate(\DateTimeInterface $ticketDate): self
+    public function setCountry(string $country): self
     {
-        $this->ticketDate = $ticketDate;
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(\DateTimeInterface $birthday): self
+    {
+        $this->birthday = $birthday;
 
         return $this;
     }
@@ -85,6 +107,18 @@ class Ticket
     public function setRate(float $rate): self
     {
         $this->rate = $rate;
+
+        return $this;
+    }
+
+    public function getOrder(): ?Order
+    {
+        return $this->order;
+    }
+
+    public function setOrder(?Order $order): self
+    {
+        $this->order = $order;
 
         return $this;
     }

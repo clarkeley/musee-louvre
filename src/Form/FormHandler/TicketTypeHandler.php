@@ -6,10 +6,27 @@
  * Time: 22:23
  */
 
-namespace App\Controller;
+namespace App\Form\FormHandler;
 
+
+use phpDocumentor\Reflection\Types\Boolean;
+use Symfony\Component\Form\FormInterface;
 
 class TicketTypeHandler
 {
+    public function __construct()
+    {
+
+    }
+
+    public function handle(FormInterfaceace $form) : Boolean
+    {
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            return true;
+        }
+
+        return false;
+    }
 
 }

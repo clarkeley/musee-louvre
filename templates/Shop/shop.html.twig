@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<body class="text-center">
+<div class="text-center">
     {{ form_start(form) }}
     <div class="container">
         <div class="card">
@@ -17,13 +17,13 @@
                     {{ form_row(form.date) }}
                 </div>
                 <div class="form-group">
-                    {{ form_row(form.billet_type) }}
+                    {{ form_row(form.type) }}
                 </div>
                 <div class="form-group">
-                    {{ form_row(form.billet_number) }}
+                    {{ form_row(form.quantite) }}
                 </div>
                 <div class="form-group">
-                    {{ form_row(form.from) }}
+                    {{ form_row(form.email) }}
                 </div>
                 <button type="submit" class="btn btn-primary">Ajouter</button>
 

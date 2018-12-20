@@ -28,7 +28,7 @@ class ShopType extends AbstractType
                 'widget' => 'single_text'
             ])
 
-            ->add('billet_type', ChoiceType::class, [
+            ->add('type', ChoiceType::class, [
                 'choices' => [
                     'Demi-journée' => self::BILLET1,
                     'Journée' => self::BILLET2
@@ -37,14 +37,14 @@ class ShopType extends AbstractType
                 'multiple' => false,
             ])
 
-            ->add('billet_number', NumberType::class, array(
+            ->add('quantite', NumberType::class, array(
                 'attr' => array(
                     'min' => 1,
                     'max' => 10
                 )
             ))
 
-            ->add('from', EmailType::class)
+            ->add('email', EmailType::class)
         ;
     }
 

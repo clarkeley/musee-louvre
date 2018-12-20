@@ -2,10 +2,14 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
+ * @ORM\Table(name="louvre_order")
  */
 class Order
 {
@@ -19,27 +23,42 @@ class Order
     /**
      * @ORM\Column(type="date")
      */
-    private $date_order;
+    private $date;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $type_order;
+    private $type;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *     min=1, max=10
+     * )
+     *
+     *
      */
     private $quantite;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $email_order;
+    private $email;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $ref_order;
+    private $ref;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="order")
+     */
+    private $tickets;
+
+    public function __construct()
+    {
+        $this->tickets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -48,24 +67,24 @@ class Order
 
     public function getDate(): ?\DateTimeInterface
     {
-        return $this->date_order;
+        return $this->date;
     }
 
     public function setDate(\DateTimeInterface $date): self
     {
-        $this->date_order = $date;
+        $this->date = $date;
 
         return $this;
     }
 
-    public function getTypeOrder(): ?string
+    public function getType(): ?string
     {
-        return $this->type_order;
+        return $this->type;
     }
 
-    public function setTypeOrder(string $type_order): self
+    public function setType(string $type): self
     {
-        $this->type_order = $type_order;
+        $this->type = $type;
 
         return $this;
     }
@@ -82,27 +101,60 @@ class Order
         return $this;
     }
 
-    public function getEmailOrder(): ?string
+    public function getEmail(): ?string
     {
-        return $this->email_order;
+        return $this->email;
     }
 
-    public function setEmailOrder(string $email_order): self
+    public function setEmail(string $email): self
     {
-        $this->email_order = $email_order;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getRefOrder(): ?int
+    public function getRef(): ?int
     {
-        return $this->ref_order;
+        return $this->ref;
     }
 
-    public function setRefOrder(int $ref_order): self
+    public function setRef(int $ref): self
     {
-        $this->ref_order = $ref_order;
+        $this->ref = $ref;
 
         return $this;
     }
+
+    /**
+     * @return Collection|Ticket[]
+     */
+    public function getTickets(): Collection
+    {
+        return $this->tickets;
+    }
+
+    public function addTicket(Ticket $ticket): self
+    {
+        if (!$this->tickets->contains($ticket)) {
+            $this->tickets[] = $ticket;
+            $ticket->setOrder($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTicket(Ticket $ticket): self
+    {
+        if ($this->tickets->contains($ticket)) {
+            $this->tickets->removeElement($ticket);
+            // set the owning side to null (unless already changed)
+            if ($ticket->getOrder() === $this) {
+                $ticket->setOrder(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

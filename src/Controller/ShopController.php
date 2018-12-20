@@ -33,10 +33,6 @@
 		{
 		    $order = new Order();
 
-            try {
-                $order->setRefOrder(random_int(1, 999999));
-            } catch (\Exception $e) {
-            }
 
             $form = $this->createForm(ShopType::class, $order);
 
