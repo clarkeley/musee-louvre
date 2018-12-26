@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Ticket;
 use App\Events;
 use App\Form\FormHandler\TicketTypeHandler;
+use App\Form\TicketType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,11 +31,15 @@ class ShopTicketController extends Controller{
 
     public function __invoke(Request $request): Response
     {
+        $ticket = new Ticket();
 
-
-        $form = $this->createForm();
+        $form = $this->createForm(TicketType::class, $ticket);
 
         $form->handleRequest($request);
+
+        $order = $form->getData();
+
+        $order->getQuantite();
 
         if ($this->formHandler->handle($form)) {
             return $this->redirectToRoute('tickets');

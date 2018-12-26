@@ -2,9 +2,7 @@
 
 namespace App\Form\FormHandler;
 
-use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
@@ -32,6 +30,7 @@ final class ShopTypeHandler
             $this->session->set('order', $order);*/
 
             $this->session->set('order', $form->getData());
+
             return true;
         }
 

@@ -9,19 +9,19 @@
 namespace App\Form\FormHandler;
 
 
-use phpDocumentor\Reflection\Types\Boolean;
-use Symfony\Component\Form\FormInterface;
 
 class TicketTypeHandler
 {
-    public function __construct()
-    {
 
-    }
-
-    public function handle(FormInterfaceace $form) : Boolean
+    public function handle(FormInterfaceace $form) : bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
+            /*try {
+                $order->setRefOrder(random_int(1, 999999));
+            } catch (\Exception $e) {
+            }*/
+
+            //$ticket->setOrder($this);
 
             return true;
         }
