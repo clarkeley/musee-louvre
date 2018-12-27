@@ -5,11 +5,13 @@ namespace App\Controller;
 use App\Entity\Ticket;
 use App\Events;
 use App\Form\FormHandler\TicketTypeHandler;
+use App\Form\OrderTicketsType;
 use App\Form\TicketType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
@@ -18,33 +20,29 @@ use Twig\Environment;
  */
 class ShopTicketController extends Controller{
 
-    private $twig;
-    private $formHandler;
-    private $formFactory;
+    /**
+     * @var SessionInterface
+     */
+    private $session;
 
-    public function __construct(Environment $twig, TicketTypeHandler $formHandler, FormFactoryInterface $formFactory)
+    public function __construct( SessionInterface $session)
     {
-        $this->twig = $twig;
-        $this->formHandler = $formHandler;
-        $this->formFactory = $formFactory;
+        $this->session = $session;
     }
 
     public function __invoke(Request $request): Response
     {
-        $ticket = new Ticket();
+        $order = $this->session->get('order');
 
-        $form = $this->createForm(TicketType::class, $ticket);
+        $form = $this->createForm(OrderTicketsType::class, $order);
 
         $form->handleRequest($request);
 
-        $order = $form->getData();
 
-        $order->getQuantite();
+//        if ($this->formHandler->handle($form)) {
+//            return $this->redirectToRoute('tickets');
+//        }
 
-        if ($this->formHandler->handle($form)) {
-            return $this->redirectToRoute('tickets');
-        }
-
-        return new Response($this->twig->render('Shop/shopTicket.html.twig', array('form' => $form->createView())));
+        return $this->render('Shop/shopTicket.html.twig', array('form' => $form->createView()));
     }
 }

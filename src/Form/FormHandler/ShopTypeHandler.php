@@ -2,6 +2,7 @@
 
 namespace App\Form\FormHandler;
 
+use App\Entity\Ticket;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -21,15 +22,14 @@ final class ShopTypeHandler
     public function handle(FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
-            /*$order = $form->getData();
-
-            $order->getQuantite();
-            //TODOmettre autant de ticket vide que demandé dans la collection tickets de l'order
+            $order = $form->getData();
 
 
-            $this->session->set('order', $order);*/
+            $this->session->set('order', $order);
 
-            $this->session->set('order', $form->getData());
+            for($i = 1; $i <= $order->getQuantite();  $i++){
+                $order->addTicket(new Ticket());
+            }
 
             return true;
         }

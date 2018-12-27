@@ -19,7 +19,7 @@ class Ticket
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $fisrtName;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -51,14 +51,14 @@ class Ticket
         return $this->id;
     }
 
-    public function getFisrtName(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->fisrtName;
+        return $this->firstName;
     }
 
-    public function setFisrtName(string $fisrtName): self
+    public function setFirstName(string $firstName): self
     {
-        $this->fisrtName = $fisrtName;
+        $this->firstName = $firstName;
 
         return $this;
     }
