@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Ticket;
 use App\Events;
-use App\Form\FormHandler\TicketTypeHandler;
+use App\Form\FormHandler\OrderTicketsTypeHandler;
 use App\Form\OrderTicketsType;
 use App\Form\TicketType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,16 +18,21 @@ use Twig\Environment;
 /**
  * @Route("/tickets", name = "tickets")
  */
-class ShopTicketController extends Controller{
+class OrderTicketsController extends Controller{
 
     /**
      * @var SessionInterface
      */
     private $session;
+    /**
+     * @var OrderTicketsTypeHandler
+     */
+    private $formHandler;
 
-    public function __construct( SessionInterface $session)
+    public function __construct(OrderTicketsTypeHandler $formHandler, SessionInterface $session)
     {
         $this->session = $session;
+        $this->formHandler = $formHandler;
     }
 
     public function __invoke(Request $request): Response
@@ -38,10 +43,9 @@ class ShopTicketController extends Controller{
 
         $form->handleRequest($request);
 
-
-//        if ($this->formHandler->handle($form)) {
-//            return $this->redirectToRoute('tickets');
-//        }
+        if ($this->formHandler->handle($form)) {
+            //return $this->redirectToRoute('rate');
+        }
 
         return $this->render('Shop/shopTicket.html.twig', array('form' => $form->createView()));
     }

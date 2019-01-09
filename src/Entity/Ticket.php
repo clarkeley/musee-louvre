@@ -37,7 +37,7 @@ class Ticket
     private $birthday;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="boolean")
      */
     private $rate;
 
@@ -45,6 +45,11 @@ class Ticket
      * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="tickets")
      */
     private $order;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $price;
 
     public function getId(): ?int
     {
@@ -121,5 +126,21 @@ class Ticket
         $this->order = $order;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price): void
+    {
+        $this->price = $price;
     }
 }

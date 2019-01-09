@@ -18,7 +18,7 @@ class OrderTicketsType extends AbstractType
                 'by_reference' => false
             ])
         ;
-    } //add handler, if price, return true controller step 4
+    }
 
     public function configureOptions(OptionsResolver $resolver)
     {
