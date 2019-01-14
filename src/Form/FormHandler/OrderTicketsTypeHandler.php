@@ -13,7 +13,6 @@ namespace App\Form\FormHandler;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class OrderTicketsTypeHandler
 {
@@ -21,10 +20,6 @@ class OrderTicketsTypeHandler
      * @var SessionInterface
      */
     private $session;
-
-    /* public $today = dateTime();
-    public $today = $dateTime->format("yyyy-MM-dd");
-    public $dateTime = \DateTime::createFromFormat("yyyy-MM-dd", );*/
 
 
     public function __construct(SessionInterface $session)
@@ -36,19 +31,38 @@ class OrderTicketsTypeHandler
     {
         if ($form->isSubmitted() && $form->isValid()) {
             $order = $form->getData();
-            $tickets = $form->getData();
 
-            $this->session->set('order', $order);
-            $this->session->set('tickets', $tickets);
+            $this->session->set('order', $order); // 0->3 = gratuit, 4->11 = 8 euros, 12->59 = 16 euros, 60 = 12 euros except rate = 10 euros
 
-           if ($tickets->getBirthday() >= "2001-01-10" & $tickets->getRate() === true or $tickets->getBirthday() < "2001-01-10" & $tickets->getRate() === true) {
-               $tickets->setPrice();
-           }
-           elseif ($tickets->getBirthday() >= "2001-01-10" & $tickets->getRate() === false or $tickets->getBirthday() < "2001-01-10" & $tickets->getRate() === false){
-               $tickets->setPrice();
-           }
+            if($order->getRate() == true){
+                $order->setPrice(10);
+            }
+            else{
+                foreach ($order as $order ){
+                    if ($order->getAge() <= 3){
+                        $order->setPrice(0);
+                    }
+                    elseif ($order->getAge() >= 4 & $order->getAge() <= 11){
+                        $order->setPrice(8);
+                    }
+                    elseif ($order->getAge() >= 12 & $order->getAge() <= 59){
+                        $order->setPrice(16);
+                    }
+                    else{
+                        $order->setPrice(12);
+                    }
 
+                }
+                switch ($order){
+                    case 1 : if ($order->getAge() <= 3) $order->setPrice(0); break;
 
+                    case 2 : if ($order->getAge() >= 4 & $order->getAge() <= 11) $order->setPrice(8); break;
+
+                    case 3 : if ($order->getAge() >= 12 & $order->getAge() <= 59) $order->setPrice(16); break;
+
+                    case 4 : if ($order->getAge() >= 60) $order->setPrice(12); break;
+                }
+            }
 
             return true;
         }

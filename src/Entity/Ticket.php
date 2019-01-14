@@ -51,6 +51,7 @@ class Ticket
      */
     private $price;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -142,5 +143,11 @@ class Ticket
     public function setPrice($price): void
     {
         $this->price = $price;
+    }
+
+
+    public function getAge()
+    {
+        return $this->getOrder()->getDate()->diff($this->getBirthday())->y;
     }
 }
