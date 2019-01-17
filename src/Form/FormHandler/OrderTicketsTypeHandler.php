@@ -8,6 +8,7 @@
 
 namespace App\Form\FormHandler;
 
+use App\Entity\Order;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -24,46 +25,36 @@ class OrderTicketsTypeHandler
         $this->session = $session;
     }
 
-    public function handle(FormInterface $form) : bool
+    public function handle(FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Order $order */
             $order = $form->getData();
 
-            $this->session->set('order', $order);
+            $totalPrice =0;
 
-            /*while($order->getRate() === true){
-
-            }*/
-
-            if($order->getRate() === true){
-                $order->setPrice(10);
-            }
-            else{
-                foreach ( $order as $key ){
-                    if ($order->getAge() <= 3){
-                        $order->setPrice(0);
-                    }
-                    elseif ($order->getAge() >= 4 & $order->getAge() <= 11){
-                        $order->setPrice(8);
-                    }
-                    elseif ($order->getAge() >= 12 & $order->getAge() <= 59){
-                        $order->setPrice(16);
-                    }
-                    else{
-                        $order->setPrice(12);
-                    }
-
+            foreach ($order->getTickets() as $ticket) {
+                if ($ticket->getAge() < 4) {
+                    $ticket->setPrice(0);
+                } elseif ($ticket->getAge() < 12) {
+                    $ticket->setPrice(8);
+                } elseif ($ticket->getAge() < 60) {
+                    $ticket->setPrice(16);
+                } else {
+                    $ticket->setPrice(12);
                 }
-                /*switch ($order){
-                    case 1 : if ($order->getAge() <= 3) $order->setPrice(0); break;
 
-                    case 2 : if ($order->getAge() >= 4 & $order->getAge() <= 11) $order->setPrice(8); break;
 
-                    case 3 : if ($order->getAge() >= 12 & $order->getAge() <= 59) $order->setPrice(16); break;
+                if ($ticket->getPrice() >= 10 && $ticket->getRate()) {
+                    $ticket->setPrice(10);
+                } else {
+                    $ticket->setRate(false);
+                }
 
-                    case 4 : if ($order->getAge() >= 60) $order->setPrice(12); break;
-                }*/
+                $totalPrice += $ticket->getPrice();
             }
+
+            $order->setTotalPrice($totalPrice);
 
             return true;
         }

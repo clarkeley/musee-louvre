@@ -27,7 +27,7 @@ class BasketController extends Controller{
     {
         $order = $this->session->get('order');
 
-        $order->session->get('order', 'ticket');
+        echo $order->get('order', 'ticket');
 
         /*$repository = $this->getDoctrine()->getRepository(Ticket::class);
 

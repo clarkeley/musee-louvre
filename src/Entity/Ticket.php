@@ -106,7 +106,7 @@ class Ticket
         return $this;
     }
 
-    public function getRate()
+    public function getRate(): bool
     {
         return $this->rate;
     }

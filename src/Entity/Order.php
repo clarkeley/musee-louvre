@@ -46,7 +46,7 @@ class Order
     private $email;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $ref;
 
@@ -55,21 +55,39 @@ class Order
      */
     private $tickets;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $totalPrice;
+
+    /**
+     * Order constructor.
+     */
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
+    /**
+     * @param \DateTimeInterface $date
+     * @return Order
+     */
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
@@ -77,11 +95,18 @@ class Order
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
+    /**
+     * @param string $type
+     * @return Order
+     */
     public function setType(string $type): self
     {
         $this->type = $type;
@@ -89,11 +114,18 @@ class Order
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getQuantite(): ?int
     {
         return $this->quantite;
     }
 
+    /**
+     * @param int $quantite
+     * @return Order
+     */
     public function setQuantite(int $quantite): self
     {
         $this->quantite = $quantite;
@@ -101,11 +133,18 @@ class Order
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     * @return Order
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -113,11 +152,18 @@ class Order
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getRef(): ?int
     {
         return $this->ref;
     }
 
+    /**
+     * @param int $ref
+     * @return Order
+     */
     public function setRef(int $ref): self
     {
         $this->ref = $ref;
@@ -133,6 +179,10 @@ class Order
         return $this->tickets;
     }
 
+    /**
+     * @param Ticket $ticket
+     * @return Order
+     */
     public function addTicket(Ticket $ticket): self
     {
         if (!$this->tickets->contains($ticket)) {
@@ -143,17 +193,36 @@ class Order
         return $this;
     }
 
+    /**
+     * @param Ticket $ticket
+     * @return Order
+     */
     public function removeTicket(Ticket $ticket): self
     {
         if ($this->tickets->contains($ticket)) {
             $this->tickets->removeElement($ticket);
-            // set the owning side to null (unless already changed)
             if ($ticket->getOrder() === $this) {
                 $ticket->setOrder(null);
             }
         }
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTotalPrice()
+    {
+        return $this->totalPrice;
+    }
+
+    /**
+     * @param mixed $totalPrice
+     */
+    public function setTotalPrice($totalPrice): void
+    {
+        $this->totalPrice = $totalPrice;
     }
 
 
