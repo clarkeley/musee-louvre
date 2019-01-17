@@ -2,18 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Ticket;
 use App\Events;
 use App\Form\FormHandler\OrderTicketsTypeHandler;
 use App\Form\OrderTicketsType;
-use App\Form\TicketType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Twig\Environment;
 
 /**
  * @Route("/tickets", name = "tickets")
@@ -44,7 +40,7 @@ class OrderTicketsController extends Controller{
         $form->handleRequest($request);
 
         if ($this->formHandler->handle($form)) {
-            //return $this->redirectToRoute('rate');
+            return $this->redirectToRoute('billetterie');
         }
 
         return $this->render('Shop/shopTicket.html.twig', array('form' => $form->createView()));

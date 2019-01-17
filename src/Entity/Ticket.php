@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TicketRepository")
@@ -39,7 +40,7 @@ class Ticket
     /**
      * @ORM\Column(type="boolean")
      */
-    private $rate;
+    private $rate = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="tickets")
@@ -105,12 +106,12 @@ class Ticket
         return $this;
     }
 
-    public function getRate(): ?float
+    public function getRate()
     {
         return $this->rate;
     }
 
-    public function setRate(float $rate): self
+    public function setRate($rate)
     {
         $this->rate = $rate;
 

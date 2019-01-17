@@ -8,9 +8,6 @@
 
 namespace App\Form\FormHandler;
 
-
-
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -32,13 +29,17 @@ class OrderTicketsTypeHandler
         if ($form->isSubmitted() && $form->isValid()) {
             $order = $form->getData();
 
-            $this->session->set('order', $order); // 0->3 = gratuit, 4->11 = 8 euros, 12->59 = 16 euros, 60 = 12 euros except rate = 10 euros
+            $this->session->set('order', $order);
 
-            if($order->getRate() == true){
+            /*while($order->getRate() === true){
+
+            }*/
+
+            if($order->getRate() === true){
                 $order->setPrice(10);
             }
             else{
-                foreach ($order as $order ){
+                foreach ( $order as $key ){
                     if ($order->getAge() <= 3){
                         $order->setPrice(0);
                     }
@@ -53,7 +54,7 @@ class OrderTicketsTypeHandler
                     }
 
                 }
-                switch ($order){
+                /*switch ($order){
                     case 1 : if ($order->getAge() <= 3) $order->setPrice(0); break;
 
                     case 2 : if ($order->getAge() >= 4 & $order->getAge() <= 11) $order->setPrice(8); break;
@@ -61,7 +62,7 @@ class OrderTicketsTypeHandler
                     case 3 : if ($order->getAge() >= 12 & $order->getAge() <= 59) $order->setPrice(16); break;
 
                     case 4 : if ($order->getAge() >= 60) $order->setPrice(12); break;
-                }
+                }*/
             }
 
             return true;
