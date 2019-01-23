@@ -40,7 +40,7 @@ class OrderTicketsController extends Controller{
         $form->handleRequest($request);
 
         if ($this->formHandler->handle($form)) {
-            return $this->redirectToRoute('billetterie');
+            return $this->redirectToRoute('basket');
         }
 
         return $this->render('Shop/shopTicket.html.twig', array('form' => $form->createView()));

@@ -25,14 +25,6 @@ class BasketController extends Controller{
 
     public function __invoke(Request $request): Response
     {
-        $order = $this->session->get('order');
-
-        echo $order->get('order', 'ticket');
-
-        /*$repository = $this->getDoctrine()->getRepository(Ticket::class);
-
-        $order = $repository->findAll();*/
-
         return $this->render('Shop/shopBasket.html.twig');
     }
 }
