@@ -25,6 +25,6 @@ class BasketController extends Controller{
 
     public function __invoke(Request $request): Response
     {
-        return $this->render('Shop/shopBasket.html.twig');
+        return $this->render('Shop/shopBasket.html.twig',['order'=>$this->session->get('order')]);
     }
 }

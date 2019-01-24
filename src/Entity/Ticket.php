@@ -40,7 +40,7 @@ class Ticket
     /**
      * @ORM\Column(type="boolean")
      */
-    private $rate;
+    private $rate = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="tickets")

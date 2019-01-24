@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,8 +7,10 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
             <link rel="stylesheet" href="{{ asset('cookiealert.css') }}"/>
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
         {% endblock %}
+        <style>body{background-color: #E7E8E8;}</style>
     </head>
     <body>
         <img src="{{ asset('Louvre_Museum_Wikimedia_Commons.jpg') }}" class="img-fluid" alt="Responsive image">
@@ -33,7 +35,7 @@
             {#Footer#}
             <footer class="mastfoot mt-auto">
                 <div class="inner">
-                    <p class="copyright text-muted">Copyright &copy; Site fictif pour Openclassrooms, par Emmanuel Auguier</p>
+                </br><p class="copyright text-muted">Copyright &copy; Site fictif pour Openclassrooms, par Emmanuel Auguier</p>
                 </div>
             </footer>
 

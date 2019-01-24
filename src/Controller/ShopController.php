@@ -6,6 +6,7 @@
     use App\Events;
     use App\Form\FormHandler\ShopTypeHandler;
     use App\Form\ShopType;
+    use App\Manager\OrderManager;
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
@@ -17,16 +18,20 @@
 	class ShopController extends Controller{
 
 		private $formHandler;
+        /**
+         * @var OrderManager
+         */
+        private $orderManager;
 
-		public function __construct(ShopTypeHandler $formHandler)
+        public function __construct(ShopTypeHandler $formHandler, OrderManager $orderManager)
 		{
 			$this->formHandler = $formHandler;
-		}
+            $this->orderManager = $orderManager;
+        }
 
 		public function __invoke(Request $request): Response
 		{
-		    $order = new Order();
-
+		    $order = $this->orderManager->getNewOrder();
 
             $form = $this->createForm(ShopType::class, $order);
 

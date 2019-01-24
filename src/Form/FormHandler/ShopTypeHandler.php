@@ -3,6 +3,7 @@
 namespace App\Form\FormHandler;
 
 use App\Entity\Ticket;
+use App\Manager\OrderManager;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -10,13 +11,13 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 final class ShopTypeHandler
 {
     /**
-     * @var SessionInterface
+     * @var OrderManager
      */
-    private $session;
+    private $orderManager;
 
-    public function __construct(SessionInterface $session)
+    public function __construct(OrderManager $orderManager)
     {
-        $this->session = $session;
+        $this->orderManager = $orderManager;
     }
 
     public function handle(FormInterface $form): bool
@@ -24,18 +25,15 @@ final class ShopTypeHandler
         if ($form->isSubmitted() && $form->isValid()) {
             $order = $form->getData();
 
-
-            $this->session->set('order', $order);
-
-            for($i = 1; $i <= $order->getQuantite();  $i++){
-                $order->addTicket(new Ticket());
-            }
+            $this->orderManager->generateTickets($order);
 
             return true;
         }
 
         return false;
     }
+
+
 
 
 }

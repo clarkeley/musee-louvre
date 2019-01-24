@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <div class="text-center">
+    <body class="text-center">
         <div class="container">
             <div class="card">
                 <div class="card-header">
@@ -12,21 +12,39 @@
                 </div>
                 <div class="card-block">
 
-                    {% if app.session.get('order') is not null %}
-                        {% set order = app.session.get('order') %}
+                        {#<table class="table-primary table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Nombre de Tickets</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Ticket</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">{{ order.quantite }}</th>
+                                <td>{{ order.type }}</td>
+                                <td>{{ order.date|date("d-m-y") }}</td>
+                                <td>{{ order.tickets }}</td>
+                                <td>{{ order.totalPrice }} €</td>
+                            </tr>
+                            </tbody>
+                        </table>#}
 
                             <p>Nombre de Tickets : {{ order.quantite }}</p>
                             <p>Pour la {{ order.type }} du {{ order.date|date("d-m-y") }}</p>
-                            <p>{{ order.tickets }}</p>
+                            {% for ticket in order.tickets %}
+                                {{ ticket.firstName }}
+                            {% endfor %}
                             <br><p>Total du panier : {{ order.totalPrice }} €.</p>
 
-                    {% endif %}
-
-                    <button type="submit" class="btn btn-primary">Procéder au paiement</button>
+                    <button type="submit" class="btn btn-primary">Paiement Stripe</button>
 
                 </div>
             </div>
         </div>
-    </div>
+    </body>
 
 {% endblock %}

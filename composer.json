@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "sensio/framework-extra-bundle": "^5.1",
+        "stripe/stripe-php": "^6.29",
         "swiftmailer/swiftmailer": "^6.0",
         "symfony/asset": "*",
         "symfony/console": "*",
@@ -22,8 +23,7 @@
         "symfony/twig-bundle": "*",
         "symfony/validator": "*",
         "symfony/web-link": "*",
-        "symfony/yaml": "*",
-        "ext-http": "*"
+        "symfony/yaml": "*"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
