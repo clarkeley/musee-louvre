@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Manager\OrderManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,37 +15,33 @@ use Symfony\Component\Routing\Annotation\Route;
 class BasketController extends Controller{
 
     /**
-     * @var SessionInterface
+     * @var OrderManager
      */
-    private $session;
+    private $orderManager;
 
-    public function __construct(SessionInterface $session)
+    public function __construct(OrderManager $orderManager)
     {
-        $this->session = $session;
+        $this->orderManager = $orderManager;
     }
 
     public function __invoke(Request $request): Response
     {
+        $order = $this->orderManager->getCurrentOrder();
         if ($request->isMethod('POST')) {
 
-            $order = $this->session->get('order');
+            if($this->orderManager->pay($order)){
 
-            $token = $request->request->get('stripeToken');
+                $this->addFlash('success', 'Order Complete !');
 
-            \Stripe\Stripe::setApiKey("sk_test_A20bVsterAEgNtzP7zMp1L43");
-            \Stripe\Charge::create(array(
-                "amount" => $order->getTotalPrice() * 100,
-                "currency" => 'eur',
-                "source" => $token,
-                "description" => "Stripe paiement tests"
-            ));
+                return $this->redirectToRoute('home');
+            }else{
+                $this->addFlash('danger', 'Problème stripe');
+            }
 
-            $this->addFlash('sucess', 'Order Complete !');
 
-            return $this->redirectToRoute('home');
         }
 
-        return $this->render('Shop/shopBasket.html.twig',['order'=>$this->session->get('order')]);
+        return $this->render('Shop/shopBasket.html.twig',['order'=>$order]);
     }
 
 }

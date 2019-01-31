@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Events;
 use App\Form\FormHandler\OrderTicketsTypeHandler;
 use App\Form\OrderTicketsType;
+use App\Manager\OrderManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,23 +18,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class OrderTicketsController extends Controller{
 
     /**
-     * @var SessionInterface
-     */
-    private $session;
-    /**
      * @var OrderTicketsTypeHandler
      */
     private $formHandler;
 
-    public function __construct(OrderTicketsTypeHandler $formHandler, SessionInterface $session)
+    /**
+     * @var OrderManager
+     */
+    private $orderManager;
+
+    public function __construct(OrderTicketsTypeHandler $formHandler, OrderManager $orderManager)
     {
-        $this->session = $session;
         $this->formHandler = $formHandler;
+        $this->orderManager = $orderManager;
     }
 
     public function __invoke(Request $request): Response
     {
-        $order = $this->session->get('order');
+        $order = $this->orderManager->getCurrentOrder();
 
         $form = $this->createForm(OrderTicketsType::class, $order);
 

@@ -40,7 +40,7 @@ class Ticket
     /**
      * @ORM\Column(type="boolean")
      */
-    private $rate = false;
+    private $reduce = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="tickets")
@@ -106,14 +106,14 @@ class Ticket
         return $this;
     }
 
-    public function getRate(): bool
+    public function getReduce(): bool
     {
-        return $this->rate;
+        return $this->reduce;
     }
 
-    public function setRate($rate)
+    public function setReduce($reduce)
     {
-        $this->rate = $rate;
+        $this->reduce = $reduce;
 
         return $this;
     }

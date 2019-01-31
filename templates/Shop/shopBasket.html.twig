@@ -43,16 +43,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
                                 {% for ticket in order.tickets %}
-                                    <td>{{ ticket.firstName }}</td>
-                                    <td>{{ ticket.lastName }}</td>
-                                    <td>{{ ticket.country }}</td>
-                                    <td>{{ ticket.birthday|date("d-m-y") }}</td>
-                                    <td>{{ ticket.rate }}</td>
-                                    <td>{{ ticket.price }} €</td>
+                                    <tr>
+                                        <td>{{ ticket.firstName }}</td>
+                                        <td>{{ ticket.lastName }}</td>
+                                        <td>{{ ticket.country }}</td>
+                                        <td>{{ ticket.birthday|date("d-m-y") }}</td>
+                                        <td>{{ ticket.reduce }}</td>
+                                        <td>{{ ticket.price }} €</td>
+                                    </tr>
                                 {% endfor %}
-                            </tr>
                             </tbody>
                         </table>
 
@@ -64,7 +64,9 @@
                                 data-name="Musee Louvre Ticket"
                                 data-description="Widget"
                                 data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                data-locale="auto">
+                                data-locale="auto"
+                                data-currency="eur"
+                                data-email="{{ order.email }}">
                         </script>
                     </form>
 

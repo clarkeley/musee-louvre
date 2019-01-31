@@ -39,7 +39,7 @@ class TicketType extends AbstractType
                 'format' => 'yyyy-MM-dd'
             ])
 
-            ->add('rate',CheckboxType::class, ['required'=>false])
+            ->add('reduce',CheckboxType::class, ['required'=>false])
         ;
     }
 
