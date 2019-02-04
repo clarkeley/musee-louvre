@@ -35,8 +35,10 @@ class OrderManager
     public function pay(Order $order)
     {
         $reference = $this->stripePaiement->doPaiement($order->getTotalPrice(), 'Commande Louvre');
-        if ($reference){
-            // assigner a ta commande la reference stripe
+
+        if ($reference)
+        {
+            //$order->setRef($charge['id']);
             // envoyer le mail de confirmation
             // enregistrer en bdd
             return true;

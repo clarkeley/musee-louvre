@@ -1,40 +1,34 @@
 <?php
 
-      namespace App\Form\FormHandler;
+namespace App\Form\FormHandler;
 
-      use Symfony\Component\Form\FormInterface;
-      use Symfony\Component\Form\ContactType;
+use App\Manager\OrderManager;
+use App\Services\SwiftMailer;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\ContactType;
 
-      final class ContactTypeHandler
-      {
+final class ContactTypeHandler
+{
+    /**
+     * @var SwiftMailer
+     */
+    private $swiftMailer;
 
-            /** @var \Swift_Mailer [description] */
-            private $mailer;
+    public function __construct(SwiftMailer $swiftMailer)
+    {
+        $this->swiftMailer = $swiftMailer;
+    }
 
-            public function __construct(\Swift_Mailer $mailer)
-            {
-                  $this->mailer = $mailer;
-            }
+    public function handle(FormInterface $form) : bool
+    {
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $this->swiftMailer->doContact($form);
 
-      	public function handle(FormInterface $form) : bool
-      	{
-      		if ($form->isSubmitted() && $form->isValid()) {
+            return true;
 
-                  $builder = $form->getData();
+        }
 
-                  $message = (new \Swift_Message('ContactMail'))
-                        ->setSubject('Contact Form '.$builder['username'])
-                        ->setFrom($builder['from'])
-                        ->setTo('aemmanuel.project@gmail.com')
-                        ->setBody($builder['message'])
-                        ;
-
-                  $this->mailer->send($message);
-
-
-                  return true;
-                  }
-
-      		return false;
-      	}
-      }
+        return false;
+    }
+}
