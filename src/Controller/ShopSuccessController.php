@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Order;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,9 +18,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ShopSuccessController extends Controller{
 
-    public function __invoke()
+    public function showSuccess()
     {
-        return $this->render('Shop/shopSuccess.html.twig');
+        $repository = $this->getDoctrine()->getRepository(Order::class);
+
+        $order = $repository->findAll();
+
+        return $this->render('Shop/shopSuccess.html.twig', ['order', $order]);
     }
 
 }

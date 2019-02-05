@@ -3,4 +3,59 @@
 {% block title %}La Billetterie{% endblock %}
 
 {% block body %}
+    <body class="text-center">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Success step
+            </div>
+            <div class="card-block">
+
+                <table class="table table-hover">
+                    <thead class="table-primary">
+                    <tr>
+                        <th scope="col">Nombre de Tickets</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">{{ order.quantite }}</th>
+                        <td>{{ order.type }}</td>
+                        <td>{{ order.date|date("d-m-y") }}</td>
+                        <td>{{ order.totalPrice }} €</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-hover">
+                    <thead class="table-danger">
+                    <tr>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Pays</th>
+                        <th scope="col">Date de naissance</th>
+                        <th scope="col">Réduction</th>
+                        <th scope="col">Prix</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for ticket in order.tickets %}
+                        <tr>
+                            <td>{{ ticket.firstName }}</td>
+                            <td>{{ ticket.lastName }}</td>
+                            <td>{{ ticket.country }}</td>
+                            <td>{{ ticket.birthday|date("d-m-y") }}</td>
+                            <td>{{ ticket.reduce }}</td>
+                            <td>{{ ticket.price }} €</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </body>
 {% endblock %}
