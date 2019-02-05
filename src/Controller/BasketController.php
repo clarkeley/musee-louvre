@@ -6,7 +6,6 @@ use App\Manager\OrderManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -31,9 +30,15 @@ class BasketController extends Controller{
 
             if($this->orderManager->pay($order)){
 
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($order);
+                $entityManager->flush();
+
+                $this->orderManager->stop();
+
                 $this->addFlash('success', 'Order Complete !');
 
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('success');
             }else{
                 $this->addFlash('danger', 'Problème stripe');
             }

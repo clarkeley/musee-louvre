@@ -12,6 +12,11 @@ namespace App\Manager;
 use App\Entity\Order;
 use App\Entity\Ticket;
 use App\Services\StripePaiement;
+use App\Services\SwiftMailer;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\Boolean;
+use Stripe\Charge;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class OrderManager
@@ -21,15 +26,27 @@ class OrderManager
      * @var SessionInterface
      */
     private $session;
+
+    /**
+     * @var SwiftMailer
+     */
+    private $swiftMailer;
+
     /**
      * @var StripePaiement
      */
     private $stripePaiement;
 
-    public function __construct(SessionInterface $session, StripePaiement $stripePaiement)
+    public function __construct(SessionInterface $session, StripePaiement $stripePaiement, SwiftMailer $swiftMailer)
     {
         $this->session = $session;
         $this->stripePaiement = $stripePaiement;
+        $this->swiftMailer = $swiftMailer;
+    }
+
+    public function stop()
+    {
+        $this->session->invalidate();
     }
 
     public function pay(Order $order)
@@ -39,8 +56,13 @@ class OrderManager
         if ($reference)
         {
             //$order->setRef($charge['id']);
-            // envoyer le mail de confirmation
-            // enregistrer en bdd
+
+            $order->setRef(uniqid('', true));
+
+            $this->swiftMailer->orderMailer($order);
+
+            //register basketController
+
             return true;
         }
 

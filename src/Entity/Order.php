@@ -46,12 +46,12 @@ class Order
     private $email;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", type="boolean", unique=true)
      */
     private $ref;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="order")
+     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="order", cascade={"persist","remove"})
      */
     private $tickets;
 
@@ -153,25 +153,6 @@ class Order
     }
 
     /**
-     * @return int|null
-     */
-    public function getRef(): ?int
-    {
-        return $this->ref;
-    }
-
-    /**
-     * @param int $ref
-     * @return Order
-     */
-    public function setRef(int $ref): self
-    {
-        $this->ref = $ref;
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Ticket[]
      */
     public function getTickets(): Collection
@@ -223,6 +204,22 @@ class Order
     public function setTotalPrice($totalPrice): void
     {
         $this->totalPrice = $totalPrice;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRef()
+    {
+        return $this->ref;
+    }
+
+    /**
+     * @param mixed $ref
+     */
+    public function setRef($ref): void
+    {
+        $this->ref = $ref;
     }
 
 

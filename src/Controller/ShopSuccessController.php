@@ -9,7 +9,17 @@
 namespace App\Controller;
 
 
-class ShopSuccessController
-{
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
+
+/**
+ * @Route("/success", name = "success")
+ */
+class ShopSuccessController extends Controller{
+
+    public function __invoke()
+    {
+        return $this->render('Shop/shopSuccess.html.twig');
+    }
 
 }

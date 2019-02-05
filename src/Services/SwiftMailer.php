@@ -17,19 +17,13 @@ use Symfony\Component\Form\ContactType;
 
 class SwiftMailer
 {
-    /**
-     * @var OrderManager
-     */
-    private $orderManager;
 
     /** @var \Swift_Mailer [description] */
     private $mailer;
 
-    public function __construct(\Swift_Mailer $mailer, OrderManager $orderManager)
+    public function __construct(\Swift_Mailer $mailer)
     {
         $this->mailer = $mailer;
-
-        $this->orderManager = $orderManager;
     }
 
     public function doContact(FormInterface $form)
@@ -48,13 +42,13 @@ class SwiftMailer
             return true;
     }
 
-    public function orderMailer(Order $order, Ticket $ticket)
+    public function orderMailer(Order $order)
     {
         $message = (new \Swift_Message('Order'))
-            ->setSubject('Order Contact'.$order['email'])
-            ->setFrom('Musee-Louvre')
-            ->setTo($order['email'])
-            ->setBody($order, $ticket)
+            ->setSubject('Order Contact')
+            ->setFrom('aemmanuel.project@gmail.com')
+            ->setTo($order->getEmail())
+            ->setBody($order->getRef())
         ;
 
         $this->mailer->send($message);

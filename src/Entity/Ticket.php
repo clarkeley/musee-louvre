@@ -118,18 +118,6 @@ class Ticket
         return $this;
     }
 
-    public function getOrder(): ?Order
-    {
-        return $this->order;
-    }
-
-    public function setOrder(?Order $order): self
-    {
-        $this->order = $order;
-
-        return $this;
-    }
-
     /**
      * @return mixed
      */
@@ -151,4 +139,5 @@ class Ticket
     {
         return $this->getOrder()->getDate()->diff($this->getBirthday())->y;
     }
+
 }
