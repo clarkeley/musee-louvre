@@ -37,9 +37,9 @@ class SwiftMailer
                 ->setBody($builder['message'])
             ;
 
-            $this->mailer->send($message);
+            return $this->mailer->send($message);
 
-            return true;
+
     }
 
     public function orderMailer(Order $order)
@@ -51,9 +51,7 @@ class SwiftMailer
             ->setBody($order->getRef())
         ;
 
-        $this->mailer->send($message);
-
-        return true;
+        return $this->mailer->send($message);
     }
 
 }

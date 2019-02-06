@@ -22,6 +22,7 @@ class Order
 
     /**
      * @ORM\Column(type="date")
+     *
      */
     private $date;
 
@@ -46,7 +47,7 @@ class Order
     private $email;
 
     /**
-     * @ORM\Column(type="string", type="boolean", unique=true)
+     * @ORM\Column(type="string", unique=true)
      */
     private $ref;
 

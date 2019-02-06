@@ -13,11 +13,11 @@ use App\Entity\Order;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/success", name = "success")
- */
 class ShopSuccessController extends Controller{
 
+    /**
+     * @Route("/success", name = "success")
+     */
     public function showSuccess()
     {
         $repository = $this->getDoctrine()->getRepository(Order::class);

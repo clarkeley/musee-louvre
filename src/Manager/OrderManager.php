@@ -55,9 +55,8 @@ class OrderManager
 
         if ($reference)
         {
-            //$order->setRef($charge['id']);
+            $order->setRef($reference);
 
-            $order->setRef(uniqid('', true));
 
             $this->swiftMailer->orderMailer($order);
 
