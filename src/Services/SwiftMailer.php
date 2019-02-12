@@ -10,16 +10,17 @@ namespace App\Services;
 
 
 use App\Entity\Order;
-use App\Entity\Ticket;
-use App\Manager\OrderManager;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\ContactType;
 
 class SwiftMailer
 {
 
     /** @var \Swift_Mailer [description] */
     private $mailer;
+
+    /** @var EngineInterface */
+    private $templating;
 
     public function __construct(\Swift_Mailer $mailer)
     {
@@ -48,7 +49,7 @@ class SwiftMailer
             ->setSubject('Order Contact')
             ->setFrom('aemmanuel.project@gmail.com')
             ->setTo($order->getEmail())
-            ->setBody($order->getRef())
+            ->setBody('Bonjour, votre commande a été validate, retrouvez vos billets dans ce mail : ', $order->getRef())
         ;
 
         return $this->mailer->send($message);

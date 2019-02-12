@@ -13,10 +13,6 @@ use App\Entity\Order;
 use App\Entity\Ticket;
 use App\Services\StripePaiement;
 use App\Services\SwiftMailer;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
-use phpDocumentor\Reflection\Types\Boolean;
-use Stripe\Charge;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class OrderManager
@@ -57,10 +53,7 @@ class OrderManager
         {
             $order->setRef($reference);
 
-
             $this->swiftMailer->orderMailer($order);
-
-            //register basketController
 
             return true;
         }

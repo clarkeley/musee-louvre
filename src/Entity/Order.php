@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
+use App\Validator\Constraints\TypeValidator;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator\Constraints as AcmeAssert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
@@ -27,7 +30,24 @@ class Order
     private $date;
 
     /**
+     * @Assert\Callback
+     * @param ExecutionContextInterface $context
+     * @param $payload
+     */
+    public function validateDate(ExecutionContextInterface $context, $payload)
+    {
+        if ($this->getDate()->format('w') == 2 or 0)
+        {
+            $context->buildViolation("Il n'est pas possible de réserver le mardi et(ou) le dimanche.")
+            ->atPath('orderDate')
+            ->addViolation();
+        }
+
+    }
+
+    /**
      * @ORM\Column(type="string", length=255)
+     * @AcmeAssert\TypeValidator
      */
     private $type;
 
