@@ -1,24 +1,27 @@
 <?php
 
-namespace App\Validator\Constraints;
+namespace App\Validator;
 
+use App\Entity\Order;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-/**
- * @property mixed context
- * @Annotation
- * @method addFlash(string $string, string $string1)
- */
-class TypeValidator extends ConstraintValidator
+class NoFullDayValidator extends ConstraintValidator
 {
-    public function validate($value, Constraint $constraint)
+    public function validate($object, Constraint $constraint)
     {
+
+
+        if(!$object instanceof Order){
+            throw new \LogicException();
+        }
+
         $dateCall = date("Y-m-d H:i:s"); //if format('m') == 05 && format('d') == 01
 
-        $timeNow = date("H:i:s");
+        $timeNow = new \DateTime();
+        dd($timeNow);
 
-        if ($timeNow >= 140000 && $value == "Journée")
+        if ($timeNow->format('H') >= 14 && $object->getType() == "Journée")
         {
             return $this->addFlash('danger', 'Il n\'est pas possible de réserver un billet \'Journée\' passer les 14h00.');
         }
@@ -29,4 +32,5 @@ class TypeValidator extends ConstraintValidator
                 ->addViolation();
         }
     }
+
 }

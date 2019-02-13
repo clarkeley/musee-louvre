@@ -12,6 +12,7 @@ namespace App\Services;
 use App\Entity\Order;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\FormInterface;
+use Twig\Environment;
 
 class SwiftMailer
 {
@@ -19,12 +20,16 @@ class SwiftMailer
     /** @var \Swift_Mailer [description] */
     private $mailer;
 
-    /** @var EngineInterface */
-    private $templating;
+    /**
+     * @var Environment
+     */
+    private $twig;
 
-    public function __construct(\Swift_Mailer $mailer)
+
+    public function __construct(\Swift_Mailer $mailer, Environment $twig)
     {
         $this->mailer = $mailer;
+        $this->twig = $twig;
     }
 
     public function doContact(FormInterface $form)
@@ -43,13 +48,20 @@ class SwiftMailer
 
     }
 
+    /**
+     * @param Order $order
+     * @return int
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
     public function orderMailer(Order $order)
     {
         $message = (new \Swift_Message('Order'))
             ->setSubject('Order Contact')
             ->setFrom('aemmanuel.project@gmail.com')
             ->setTo($order->getEmail())
-            ->setBody('Bonjour, votre commande a été validate, retrouvez vos billets dans ce mail : ', $order->getRef())
+            ->setBody($this->twig->render(':Shop:shopMail.html.twig', ['order'=>$order]))
         ;
 
         return $this->mailer->send($message);
