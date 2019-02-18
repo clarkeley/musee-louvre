@@ -1,21 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Clark
- * Date: 12/02/2019
- * Time: 22:41
- */
 
-namespace App\Validator\Constraints;
+namespace App\Validator;
 
-use App\Entity\Order;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 
-class NombreTicketValidator extends ConstraintValidator
+class NoFullTicketValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
@@ -26,5 +16,10 @@ class NombreTicketValidator extends ConstraintValidator
         //Calcul nombre de ticket
 
         //ifviolation
+        /* @var $constraint App\Validator\NoFullTicket */
+
+        $this->context->buildViolation($constraint->message)
+            ->setParameter('{{ value }}', $value)
+            ->addViolation();
     }
 }
