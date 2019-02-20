@@ -2,20 +2,48 @@
 
 namespace App\Validator;
 
+use App\Entity\Order;
+use App\Repository\OrderRepository;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Doctrine\ORM\EntityManager;
 
 class NoFullTicketValidator extends ConstraintValidator
 {
+
+    /**
+     * @var OrderRepository
+     */
+    private $orderRepository;
+
+    public function __construct(OrderRepository $orderRepository)
+    {
+        $this->orderRepository = $orderRepository;
+    }
     public function validate($value, Constraint $constraint)
     {
-        //Récupérer le nombre de billet par jour depuis fonction Order ou faire tri dans la table en fonction de la date
+        if(!$value instanceof Order){
+            throw new \LogicException();
+        }
 
-        //$repository = $this->getDoctrine()->getRepository(Order::class);
+        /*$entityManager = $this->getEntityManager();
 
-        //Calcul nombre de ticket
+        $query = $entityManager->createQuery(
+            'SELECT t
+            FROM App\Entity\Ticket t
+            WHERE t.id
+            ORDER BY p.price ASC'
+        )->setParameter('price', $price);
 
-        //ifviolation
+        return $query->getResult();*/
+
+
+        $repository = $this->getDoctrine()->getRepository(Order::class);
+
+        $tickets = $repository->findOneBy(['order' => 'ticket']);
+
+        if ($value->getNbrTickets())
+
         /* @var $constraint App\Validator\NoFullTicket */
 
         $this->context->buildViolation($constraint->message)

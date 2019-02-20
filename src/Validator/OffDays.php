@@ -15,8 +15,4 @@ class OffDays extends Constraint
      */
     public $message = 'Il est impossible de prendre des billets pour les jours fériés';
 
-    public function getTargets()
-    {
-        return self::CLASS_CONSTRAINT;
-    }
 }

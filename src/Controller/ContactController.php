@@ -31,7 +31,6 @@
         public function __invoke(Request $request)
         {
             $form = $this->createForm(ContactType::class);
-
             $form->handleRequest($request);
 
             if ($this->formHandler->handle($form)) {

@@ -25,25 +25,11 @@ class Order
 
     /**
      * @ORM\Column(type="date")
-     *
+     * @LouvreAssert\OffDays()
+     * @LouvreAssert\NoSunday()
+     * @LouvreAssert\NoTuesday()
      */
     private $date;
-
-    /**
-     * @Assert\Callback
-     * @param ExecutionContextInterface $context
-     * @param $payload
-     */
-    public function validateDate(ExecutionContextInterface $context, $payload)
-    {
-        if (in_array($this->getDate()->format('w'),[0,2]))
-        {
-            $context->buildViolation("Il n'est pas possible de réserver le mardi et(ou) le dimanche.")
-            ->atPath('orderDate')
-            ->addViolation();
-        }
-
-    }
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -240,6 +226,14 @@ class Order
     public function setRef($ref): void
     {
         $this->ref = $ref;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbrTickets()
+    {
+        return $this->getTickets()->count();
     }
 
 

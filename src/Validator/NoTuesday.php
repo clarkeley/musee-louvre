@@ -14,4 +14,5 @@ class NoTuesday extends Constraint
      * Then, use these in your validator class.
      */
     public $message = 'Il est impossible de réserver les Mardis.';
+
 }

@@ -1,41 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="icon" href="../../assets/img/icons/foundation-favicon.ico" type="image/x-icon">
-    <meta name="viewport" content="width=device-width">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation-emails/2.2.1/foundation-emails.min.css"
-          rel="stylesheet">
-    <title>My Order Template Email Template Subject</title>
-</head>
-<body>
+
 <span class="preheader"></span>
 
-
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-2195009-2', 'auto');
-    ga('send', 'pageview');
-
-    ga('create', 'UA-2195009-27', 'auto', {name: "foundation"});
-    ga('foundation.send', 'pageview');
-
-    ga('create', 'UA-2195009-47', 'auto', {name: "foundation_emails"});
-    ga('foundation_emails.send', 'pageview');
-
-</script>
 <table class="body">
     <tr>
         <td class="center" align="center" valign="top">
@@ -73,12 +38,8 @@
                                         <table>
                                             <tr>
                                                 <th>
-                                                    <h1>Thanks for your order.</h1>
-                                                    <p>Thanks for shopping with us! Lorem ipsum dolor sit amet,
-                                                        consectetur adipisicing elit. Ad earum ducimus, non, eveniet
-                                                        neque dolores voluptas architecto sed, voluptatibus aut dolorem
-                                                        odio. Cupiditate a recusandae, illum cum voluptatum modi
-                                                        nostrum.</p>
+                                                    <h1>Merci pour votre commande sur musee-louvre</h1>
+                                                    <p>Si vous constatez un soucis d'affichage ou autre avec cet email, n'hésitez pas à passer par le formulaire de contact du site.</p>
                                                     <table class="spacer">
                                                         <tbody>
                                                         <tr>
@@ -99,19 +60,16 @@
                                                                                 <tr>
                                                                                     <th>
                                                                                         <p>
-                                                                                            <strong>Payment
-                                                                                                Method</strong><br>
-                                                                                            Dubloons
+                                                                                            <strong>Méthode de paiement</strong><br>
+                                                                                            Stripe
                                                                                         </p>
                                                                                         <p>
-                                                                                            <strong>Email
-                                                                                                Address</strong><br>
-                                                                                            thecapn@pirates.org
+                                                                                            <strong>Email associé</strong><br>
+                                                                                            {{ order.email }}
                                                                                         </p>
                                                                                         <p>
-                                                                                            <strong>Order
-                                                                                                ID</strong><br>
-                                                                                            239235983749636
+                                                                                            <strong>Référence de commande</strong><br>
+                                                                                            {{ order.ref }}
                                                                                         </p>
                                                                                     </th>
                                                                                 </tr>
@@ -122,14 +80,8 @@
                                                                                 <tr>
                                                                                     <th>
                                                                                         <p>
-                                                                                            <strong>Shipping
-                                                                                                Method</strong><br>
-                                                                                            Boat (1&ndash;2 weeks)<br>
-                                                                                            <strong>Shipping
-                                                                                                Address</strong><br>
-                                                                                            Captain Price<br>
-                                                                                            123 Maple Rd<br>
-                                                                                            Campbell, CA 95112
+                                                                                            <strong>Date des billets</strong><br>
+                                                                                            {{ order.date }}
                                                                                         </p>
                                                                                     </th>
                                                                                 </tr>
@@ -142,40 +94,34 @@
                                                             <th class="expander"></th>
                                                         </tr>
                                                     </table>
-                                                    <h4>Order Details</h4>
+                                                    <h4>Détail de commande</h4>
                                                     <table>
                                                         <tr>
-                                                            <th>Item</th>
-                                                            <th>#</th>
-                                                            <th>Price</th>
+                                                            <th>Nom, Prénom</th>
+                                                            <th>Pays</th>
+                                                            <th>Date de naissance</th>
+                                                            <th>Réduction</th>
+                                                            <th>Prix</th>
                                                         </tr>
+                                                        {% for ticket in order.tickets %}
+                                                            <tr>
+                                                                <td>{{ ticket.firstName }} {{ ticket.lastName }}</td>
+                                                                <td>{{ ticket.country }}</td>
+                                                                <td>{{ ticket.birthday|date("d-m-y") }}</td>
+                                                                <td>{{ ticket.reduce }}</td>
+                                                                <td>{{ ticket.price }} €</td>
+                                                            </tr>
+                                                        {% endfor %}
                                                         <tr>
-                                                            <td>Ship's Cannon</td>
-                                                            <td>2</td>
-                                                            <td>$100</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Ship's Cannon</td>
-                                                            <td>2</td>
-                                                            <td>$100</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Ship's Cannon</td>
-                                                            <td>2</td>
-                                                            <td>$100</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="2"><b>Subtotal:</b></td>
-                                                            <td>$600</td>
+                                                            <td colspan="2"><b>Total TTC :</b></td>
+                                                            <td>{{ order.totalPrice }}</td>
                                                         </tr>
                                                     </table>
                                                     <hr>
-                                                    <h4>What's Next?</h4>
-                                                    <p>Our carrier raven will prepare your order for delivery. Lorem
-                                                        ipsum dolor sit amet, consectetur adipisicing elit. Modi
-                                                        necessitatibus itaque debitis laudantium doloribus quasi nostrum
-                                                        distinctio suscipit, magni soluta eius animi voluptatem qui
-                                                        velit eligendi quam praesentium provident culpa?</p>
+                                                    <h4>Prochaine étape ?</h4>
+                                                    <p>Rendez-vous à l'entrée Online du Musée muni de l'email présent sur votre smartphone/tablette ou autre support ainsi que des cartes d'identités associés.
+                                                       Toutes les informations concernant les billets doivent être visibles pour l'agent chargé des vérifications à l'entrée.
+                                                    </p>
                                                 </th>
                                             </tr>
                                         </table>
@@ -190,7 +136,7 @@
                                         <table>
                                             <tr>
                                                 <th>
-                                                    <img src="https://placehold.it/170x30" alt="">
+                                                    <img src="{{ asset('min_mail.jpg') }}" class="img-fluid" alt="Responsive image">
                                                 </th>
                                             </tr>
                                         </table>
@@ -200,8 +146,7 @@
                                             <tr>
                                                 <th>
                                                     <p>
-                                                        Call us at 800.555.1923<br>
-                                                        Email us at support@discount.boat
+                                                        Contactez nous depuis le site LIEN
                                                     </p>
                                                 </th>
                                             </tr>
@@ -212,8 +157,8 @@
                                             <tr>
                                                 <th>
                                                     <p>
-                                                        123 Maple Rd<br>
-                                                        Campbell, CA 95112
+                                                        Le musée Rue de Rivoli,<br>
+                                                        75001 Paris
                                                     </p>
                                                 </th>
                                             </tr>
@@ -235,5 +180,3 @@
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 </div>
-</body>
-</html>

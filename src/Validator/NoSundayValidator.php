@@ -10,14 +10,14 @@ class NoSundayValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if (!$value instanceof Order)
+        if (!$value instanceof \DateTime)
         {
             throw new \LogicException();
         }
 
         if (in_array($value->getDate()->format('w'), [0]))
         {
-            /* @var $constraint App\Validator\NoTuesday */
+            /* @var NoTuesday $constraint*/
 
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ value }}', $value)

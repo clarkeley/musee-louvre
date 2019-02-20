@@ -2,17 +2,20 @@
 
 namespace App\Validator;
 
+use App\Entity\Order;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class OffDaysValidator extends ConstraintValidator
 {
-    public function validate($date, Constraint $constraint)
+    public function validate($value, Constraint $constraint)
     {
-        if ($date === null)
+        if (!$value instanceof \DateTime)
         {
-            $date = time();
+            throw new \LogicException();
         }
+
+        $date = time();
 
         $date = strtotime(date('m/d/Y',$date));
 
@@ -23,7 +26,7 @@ class OffDaysValidator extends ConstraintValidator
         $easterMonth = date('n', $easterDate);
         $easterYear   = date('Y', $easterDate);
 
-        $holidays = array(
+        $offDays = array(
             // Dates fixes
             mktime(0, 0, 0, 1,  1,  $year),  // 1er janvier
             mktime(0, 0, 0, 5,  1,  $year),  // Fête du travail
@@ -40,12 +43,14 @@ class OffDaysValidator extends ConstraintValidator
             mktime(0, 0, 0, $easterMonth, $easterDay + 50, $easterYear),
         );
 
-        return in_array($date, $holidays);
+        if (in_array($value->format('U'), $offDays))
+        {
+            /** @var OffDays $constraint */
+            $this->context->buildViolation($constraint->message)
+                ->setParameter('{{ string }}', $value)
+                ->addViolation();
+        }
 
-        /* @var $constraint App\Validator\OffDays */
 
-        $this->context->buildViolation($constraint->message)
-            ->setParameter('{{ value }}', $value)
-            ->addViolation();
     }
 }
