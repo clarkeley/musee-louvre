@@ -3,16 +3,23 @@
 {% block title %}La Billetterie{% endblock %}
 
 {% block body %}
-    <body class="text-center">
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                4eme étape - Récap
-            </div>
-            <div class="card-block">
-                <p>Voici la référence de votre commande REF, vous allez prochainement recevoir un email contenant les informations liés à votre commande, à bientôt !</p>
+    <div class="card border-success mb-3" style="max-width: 18rem;">
+        <div class="card-header bg-transparent border-success">4eme étape - Success</div>
+        <div class="card-body text-success">
+            <div class="row">
+                <div class="col-3">
+                    <p></p>
+                    <p class="text-center"><i class="fas fa-shopping-cart fa-4x"></i></p>
+                </div>
+
+                <div class="col-9">
+                    <h5 class="card-title">Félicitations !</h5>
+                    <p class="card-text">Vous allez prochainement recevoir sur {{ order.email }} un email contenant les informations liés à votre commande, à bientôt !</p>
+                </div>
             </div>
         </div>
+        <div class="card-footer bg-transparent border-success">
+            <h3>Référence : <span class="badge badge-sucess">{{ order.ref }}</span></h3>
+        </div>
     </div>
-    </body>
 {% endblock %}

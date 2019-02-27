@@ -48,6 +48,10 @@ class Order
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(
+     *     message = "Le mail '{{ value }}' n'est pas valide.",
+     *     checkMX = true
+     *     )
      */
     private $email;
 

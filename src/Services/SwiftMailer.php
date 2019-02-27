@@ -10,7 +10,7 @@ namespace App\Services;
 
 
 use App\Entity\Order;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormInterface;
 use Twig\Environment;
 
@@ -61,7 +61,7 @@ class SwiftMailer
             ->setSubject('Order Contact')
             ->setFrom('aemmanuel.project@gmail.com')
             ->setTo($order->getEmail())
-            ->setBody($this->twig->render(':Shop:shopMail.html.twig', ['order'=>$order]))
+            ->setBody($this->twig->render('Email/shopMail.html.twig', ['order'=>$order]), 'text/html')
         ;
 
         return $this->mailer->send($message);

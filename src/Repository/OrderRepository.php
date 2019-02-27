@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Order;
+use App\Entity\Ticket;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -19,8 +21,20 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
-    public function countTicketsForDate(\DateTime $dateTime): int
+    public function countTicketsForDate(\DateTimeInterface $dateTime): int
     {
+        //$this->find($ticket)->getNbrTickets();
+
+
+        $nbr = $this->createQueryBuilder('t');
+
+        $nbr->select($nbr->expr()->count('ticket.order'))
+        ->where("order.date = $dateTime");
+
+        try {
+            return $nbr->getQuery()->getSingleScalarResult();
+        } catch (NonUniqueResultException $e) {
+        }
 
     }
 }

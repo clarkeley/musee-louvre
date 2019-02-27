@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManager;
 
 class NoFullTicketValidator extends ConstraintValidator
 {
+    const MAX_AVAILABLE_TICKETS = 1000;
 
     /**
      * @var OrderRepository
@@ -25,29 +26,17 @@ class NoFullTicketValidator extends ConstraintValidator
         if(!$value instanceof Order){
             throw new \LogicException();
         }
+        if(!$constraint instanceof NoFullTicket){
+            throw new \LogicException();
+        }
 
-        /*$entityManager = $this->getEntityManager();
+        $nbr = $value->getQuantite() + $this->orderRepository->countTicketsForDate($value->getDate());
 
-        $query = $entityManager->createQuery(
-            'SELECT t
-            FROM App\Entity\Ticket t
-            WHERE t.id
-            ORDER BY p.price ASC'
-        )->setParameter('price', $price);
+        if ($nbr > self::MAX_AVAILABLE_TICKETS)
+        {
 
-        return $query->getResult();*/
-
-
-        $repository = $this->getDoctrine()->getRepository(Order::class);
-
-        $tickets = $repository->findOneBy(['order' => 'ticket']);
-
-        if ($value->getNbrTickets())
-
-        /* @var $constraint App\Validator\NoFullTicket */
-
-        $this->context->buildViolation($constraint->message)
-            ->setParameter('{{ value }}', $value)
-            ->addViolation();
+            $this->context->buildViolation($constraint->message)
+                ->addViolation();
+        }
     }
 }

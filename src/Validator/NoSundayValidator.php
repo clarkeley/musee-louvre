@@ -15,7 +15,7 @@ class NoSundayValidator extends ConstraintValidator
             throw new \LogicException();
         }
 
-        if (in_array($value->getDate()->format('w'), [0]))
+        if (in_array($value->format('w'), [0]))
         {
             /* @var NoTuesday $constraint*/
 
