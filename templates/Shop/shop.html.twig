@@ -3,34 +3,59 @@
 {% block title %}La Billetterie{% endblock %}
 
 {% block body %}
-
-<body class="text-center">
-    {{ form_start(form) }}
     <div class="container">
-        <div class="card">
-            <div class="card-header">
-                Première étape
-            </div>
-            <div class="card-block">
-
-                <div class="form-group">
-                    {{ form_row(form.date) }}
-                </div>
-                <div class="form-group">
-                    {{ form_row(form.type) }}
-                </div>
-                <div class="form-group">
-                    {{ form_row(form.quantite) }}
-                </div>
-                <div class="form-group">
-                    {{ form_row(form.email) }}
-                </div>
-                <button type="submit" class="btn btn-primary">Ajouter</button>
-
-            </div>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">Conditions</h4>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <hr>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-info text-left">Tout les champs doivent être rempli.</li>
+                <li class="list-group-item list-group-item-info text-left">Un maximum de 10 billets par commande est autorisé, veuillez passer par le formulaire de contact pour plus de renseignements.</li>
+                <li class="list-group-item list-group-item-info text-left">Il n'est pas possible de commander un billet "Journée" pour le jour même une fois 14h00(UTC+1) passé.</li>
+                <li class="list-group-item list-group-item-info text-left">Le musée est fermer les Mardi et Dimanches ainsi que les jours fériés suivants : <br><br>
+                    1er janvier<br>
+                    Fête du travail<br>
+                    Victoire des alliés<br>
+                    Fête nationale<br>
+                    Assomption<br>
+                    Toussaint<br>
+                    Armistice<br>
+                    Noel
+                </li>
+            </ul>
         </div>
     </div>
-    {{ form_end(form) }}
-</body>
+
+    <body class="text-center">
+
+        {{ form_start(form) }}
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    La Billèterie
+                </div>
+                <div class="card-block">
+
+                    <div class="form-group">
+                        {{ form_row(form.date) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.type) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.quantite) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.email) }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </body>
 {% endblock %}
 

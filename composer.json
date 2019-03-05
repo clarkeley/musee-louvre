@@ -27,6 +27,7 @@
       "ext-calendar": "*"
     },
     "require-dev": {
+        "symfony/css-selector": "4.1.*",
         "symfony/debug-pack": "*",
         "symfony/dotenv": "*",
         "symfony/maker-bundle": "^1.9",
