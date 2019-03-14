@@ -24,7 +24,8 @@
         "symfony/validator": "*",
         "symfony/web-link": "*",
         "symfony/yaml": "*",
-      "ext-calendar": "*"
+      "ext-calendar": "*",
+      "ext-http": "*"
     },
     "require-dev": {
         "symfony/css-selector": "4.1.*",

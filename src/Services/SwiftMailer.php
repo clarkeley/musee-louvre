@@ -37,10 +37,10 @@ class SwiftMailer
             $builder = $form->getData();
 
             $message = (new \Swift_Message('ContactMail'))
-                ->setSubject('Contact Form '.$builder['username'])
-                ->setFrom($builder['from'])
+                ->setSubject('Contact Form '.$builder['Pseudo'])
+                ->setFrom($builder['Email'])
                 ->setTo('aemmanuel.project@gmail.com')
-                ->setBody($builder['message'])
+                ->setBody($builder['Message'])
             ;
 
             return $this->mailer->send($message);

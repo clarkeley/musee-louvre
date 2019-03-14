@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
  * @ORM\Table(name="louvre_order")
  * @LouvreAssert\NoFullDay()
+ * @LouvreAssert\NoFullTicket()
  */
 class Order
 {

@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityManager;
 
 class NoFullTicketValidator extends ConstraintValidator
 {
-    const MAX_AVAILABLE_TICKETS = 1000;
+    const MAX_AVAILABLE_TICKETS = 11;
 
     /**
      * @var OrderRepository
@@ -34,7 +34,6 @@ class NoFullTicketValidator extends ConstraintValidator
 
         if ($nbr > self::MAX_AVAILABLE_TICKETS)
         {
-
             $this->context->buildViolation($constraint->message)
                 ->addViolation();
         }
