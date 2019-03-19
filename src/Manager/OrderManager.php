@@ -11,6 +11,7 @@ namespace App\Manager;
 
 use App\Entity\Order;
 use App\Entity\Ticket;
+use App\Exception\NoCurrentOrderException;
 use App\Services\StripePaiement;
 use App\Services\SwiftMailer;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -70,7 +71,14 @@ class OrderManager
 
     public function getCurrentOrder()
     {
-        return $this->session->get(self::SESSION_KEY);
+        $order = $this->session->get(self::SESSION_KEY);
+
+        if (!$order instanceof Order)
+        {
+            throw new NoCurrentOrderException();
+        }
+
+        return $order;
     }
 
     /**

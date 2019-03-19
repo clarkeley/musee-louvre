@@ -7,29 +7,38 @@ use App\Entity\Ticket;
 use App\Manager\OrderManager;
 use App\Repository\TicketRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Validator\Constraints\Date;
 
 class TotalPriceTest extends WebTestCase
 {
-    const PRICE_1 = 10;
-    const PRICE_2 = 16;
+    /**
+     * @var OrderManager
+     */
+    private $OrderManager;
+
+    protected function setUp()
+    {
+        $kernel = self::bootKernel();
+
+        $this->OrderManager = $kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+    }
 
     public function testValidateCalcul()
     {
-        $tickets = new Ticket();
-        $tickets->setPrice(self::PRICE_1);
-        $tickets->setPrice(self::PRICE_2);
+        $date = "2019-03-20";
+        $order = new Order();
+        $order->setDate($date);
+        $ticket = new Ticket();
+        $ticket->getAge();
 
         $ticketRepository = $this->createMock(TicketRepository::class);
-        $ticketRepository->expects($this->any())
-            ->method('find')
-            ->willReturn($tickets);
 
         $orderManager = $this->createMock(OrderManager::SESSION_KEY);
-        $orderManager->expects($this->any())
-            ->method('getRepository')
-            ->willReturn($ticketRepository);
+
 
         $totalPrice = new OrderManager($orderManager);
-        //$this->assertEquals()
+        $this->assertEquals($totalPrice->priceCalculator());
     }
 }

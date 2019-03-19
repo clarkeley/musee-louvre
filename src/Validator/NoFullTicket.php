@@ -2,6 +2,7 @@
 
 namespace App\Validator;
 
+use phpDocumentor\Reflection\Types\Self_;
 use Symfony\Component\Validator\Constraint;
 
 /**
@@ -14,4 +15,9 @@ class NoFullTicket extends Constraint
      * Then, use these in your validator class.
      */
     public $message = 'Nous sommes désolés, le nombre de tickets demandé dépasse le stock disponible, essayez de réduire les quantités ou de réserver un autre jour .';
+
+    public function getTargets()
+    {
+        return self::CLASS_CONSTRAINT;
+    }
 }

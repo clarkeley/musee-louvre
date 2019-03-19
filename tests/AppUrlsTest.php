@@ -23,8 +23,8 @@ class AppUrlsTest extends WebTestCase
     {
         yield ['/', Response::HTTP_OK];
         yield ['/billetterie', Response::HTTP_OK];
-        yield ['/tickets', Response::HTTP_OK];
-        yield ['/panier', Response::HTTP_INTERNAL_SERVER_ERROR];
+        yield ['/tickets', Response::HTTP_FOUND];
+        yield ['/panier', Response::HTTP_FOUND];
         yield ['/success', Response::HTTP_INTERNAL_SERVER_ERROR];
         yield ['/contact', Response::HTTP_OK];
         yield ['/mentions', Response::HTTP_OK];

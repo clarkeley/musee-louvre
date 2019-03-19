@@ -10,21 +10,30 @@ namespace App\Controller;
 
 
 use App\Entity\Order;
+use App\Manager\OrderManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ShopSuccessController extends Controller{
+    /**
+     * @var OrderManager
+     */
+    private $orderManager;
+
+    public function __construct(OrderManager $orderManager)
+    {
+        $this->orderManager = $orderManager;
+    }
 
     /**
      * @Route("/success", name = "success")
+     * @throws \App\Exception\NoCurrentOrderException
      */
     public function showSuccess()
     {
-        $repository = $this->getDoctrine()->getRepository(Order::class);
+        $order = $this->orderManager->getCurrentOrder();
 
-        $order = $repository->findAll();
-
-        return $this->render('Shop/shopSuccess.html.twig', ['order', $order]);
+        return $this->render('Shop/shopSuccess.html.twig', ['order'=> $order]);
     }
 
 }

@@ -14,18 +14,11 @@ class ShopControllerTest extends WebTestCase
 
         $form = $crawler->selectButton('Ajouter')->form();
 
-        $values = $form->getPhpValues();
+        $client->submit($form, ['shop[date]' => '2019-03-20',
+            'shop[type]' => 'Journée',
+            'shop[quantite]' => 1,
+            'shop[email]' => 'toto@gmail.com',]);
 
-        $values['billetterie']['date'] = '20/03/2019';
-        $values['billetterie']['type'] = 'Journée';
-        $values['billetterie']['quantite'] = 1;
-        $values['billetterie']['email'] = 'toto@gmail.com';
-
-        $crawler = $client->request($form->getMethod(), $form->getUri(), $values, $form->getFiles());
-
-        $this->assertEquals(4, $crawler->filter('div.form-group')->count());
-
-        //$this->assertTrue($client->getResponse()->isRedirect());
-
+        $this->assertTrue($client->getResponse()->isRedirect());
     }
 }

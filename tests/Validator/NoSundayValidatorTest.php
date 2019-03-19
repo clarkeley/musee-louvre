@@ -9,28 +9,14 @@
 namespace App\Tests\Validator;
 
 use App\Validator\NoSundayValidator;
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 use Symfony\Component\Validator\Tests\Validator\AbstractValidatorTest;
 
-class NoSundayValidatorTest  extends AbstractValidatorTest
+class NoSundayValidatorTest  extends ConstraintValidatorTestCase
 {
-    protected function getValidatorInstance()
-    {
-        return new NoSundayValidator();
-    }
 
-    protected function validate($value, $constraints = null, $groups = null)
+    protected function createValidator()
     {
-        $value = [0];
-        $constraints = $this->testValidate();
-    }
-
-    protected function validateProperty($object, $propertyName, $groups = null)
-    {
-        // TODO: Implement validateProperty() method.
-    }
-
-    protected function validatePropertyValue($object, $propertyName, $value, $groups = null)
-    {
-        // TODO: Implement validatePropertyValue() method.
+        // TODO: Implement createValidator() method.
     }
 }

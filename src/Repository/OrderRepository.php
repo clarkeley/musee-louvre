@@ -21,20 +21,23 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
+    /**
+     * @param \DateTimeInterface $dateTime
+     * @return int
+     * @throws NonUniqueResultException
+     */
     public function countTicketsForDate(\DateTimeInterface $dateTime): int
     {
         //$this->find($ticket)->getNbrTickets();
 
 
-        $nbr = $this->createQueryBuilder('t');
+        $nbr = $this->createQueryBuilder('o');
 
-        $nbr->select($nbr->expr()->count('ticket.order'))
-        ->where("order.date = $dateTime");
+        $nbr->select($nbr->expr()->count('t'))
+            ->innerJoin('o.tickets', 't')
+        ->where("o.date = :date")
+        ->setParameter('date',$dateTime);
 
-        try {
-            return $nbr->getQuery()->getSingleScalarResult();
-        } catch (NonUniqueResultException $e) {
-        }
-
+        return $nbr->getQuery()->getSingleScalarResult();
     }
 }
