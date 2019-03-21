@@ -107,10 +107,10 @@ class OrderManager
             }
 
 
-            if ($ticket->getPrice() >= 10 && $ticket->getReduce()) {
+            if ($ticket->getPrice() >= 10 && $ticket->getReduction()) {
                 $ticket->setPrice(10);
             } else {
-                $ticket->setReduce(false);
+                $ticket->setReduction(false);
             }
 
             $totalPrice += $ticket->getPrice();

@@ -7,6 +7,7 @@ use App\Entity\Ticket;
 use App\Manager\OrderManager;
 use App\Repository\TicketRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\Validator\Constraints\Date;
 
 class TotalPriceTest extends WebTestCase
@@ -18,11 +19,9 @@ class TotalPriceTest extends WebTestCase
 
     protected function setUp()
     {
-        $kernel = self::bootKernel();
+        $session = new Session(new MockArraySessionStorage());
 
-        $this->OrderManager = $kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
+        $this->OrderManager = new OrderManager($session);
     }
 
     public function testValidateCalcul()

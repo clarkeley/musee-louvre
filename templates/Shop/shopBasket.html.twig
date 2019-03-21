@@ -45,11 +45,11 @@
                             <tbody>
                                 {% for ticket in order.tickets %}
                                     <tr>
-                                        <td>{{ ticket.firstName }}</td>
-                                        <td>{{ ticket.lastName }}</td>
-                                        <td>{{ ticket.country }}</td>
-                                        <td>{{ ticket.birthday|date("d-m-y") }}</td>
-                                        <td>{{ ticket.reduce }}</td>
+                                        <td>{{ ticket.prenom }}</td>
+                                        <td>{{ ticket.nom }}</td>
+                                        <td>{{ ticket.pays }}</td>
+                                        <td>{{ ticket.anniversaire|date("d-m-y") }}</td>
+                                        <td>{{ ticket.reduction }}</td>
                                         <td>{{ ticket.price }} €</td>
                                     </tr>
                                 {% endfor %}

@@ -21,31 +21,31 @@ class Ticket
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
-    private $firstName;
+    private $prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
-    private $lastName;
+    private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Country
      */
-    private $country;
+    private $pays;
 
     /**
      * @ORM\Column(type="date")
      * @Assert\Date()
      * @Assert\LessThanOrEqual("today")
      */
-    private $birthday;
+    private $anniversaire;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $reduce = false;
+    private $reduction = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="tickets")
@@ -63,62 +63,62 @@ class Ticket
         return $this->id;
     }
 
-    public function getFirstName(): ?string
+    public function getPrenom(): ?string
     {
-        return $this->firstName;
+        return $this->prenom;
     }
 
-    public function setFirstName(string $firstName): self
+    public function setPrenom(string $prenom): self
     {
-        $this->firstName = $firstName;
+        $this->prenom = $prenom;
 
         return $this;
     }
 
-    public function getLastName(): ?string
+    public function getNom(): ?string
     {
-        return $this->lastName;
+        return $this->nom;
     }
 
-    public function setLastName(string $lastName): self
+    public function setNom(string $nom): self
     {
-        $this->lastName = $lastName;
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function getCountry(): ?string
+    public function getPays(): ?string
     {
-        return $this->country;
+        return $this->pays;
     }
 
-    public function setCountry(string $country): self
+    public function setPays(string $pays): self
     {
-        $this->country = $country;
+        $this->pays = $pays;
 
         return $this;
     }
 
-    public function getBirthday(): ?\DateTimeInterface
+    public function getAnniversaire(): ?\DateTimeInterface
     {
-        return $this->birthday;
+        return $this->anniversaire;
     }
 
-    public function setBirthday(\DateTimeInterface $birthday): self
+    public function setAnniversaire(\DateTimeInterface $anniversaire): self
     {
-        $this->birthday = $birthday;
+        $this->anniversaire = $anniversaire;
 
         return $this;
     }
 
-    public function getReduce(): bool
+    public function getReduction(): bool
     {
-        return $this->reduce;
+        return $this->reduction;
     }
 
-    public function setReduce($reduce)
+    public function setReduction($reduction)
     {
-        $this->reduce = $reduce;
+        $this->reduction = $reduction;
 
         return $this;
     }
@@ -154,7 +154,7 @@ class Ticket
 
     public function getAge()
     {
-        return $this->getOrder()->getDate()->diff($this->getBirthday())->y;
+        return $this->getOrder()->getDate()->diff($this->getAnniversaire())->y;
     }
 
 

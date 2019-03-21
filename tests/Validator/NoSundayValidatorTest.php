@@ -17,6 +17,8 @@ class NoSundayValidatorTest  extends ConstraintValidatorTestCase
 
     protected function createValidator()
     {
-        // TODO: Implement createValidator() method.
+        $this->validator->validate($value, new NoSundayValidator());
+
+        $this->assertNoViolation();
     }
 }

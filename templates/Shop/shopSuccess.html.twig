@@ -8,7 +8,7 @@
             <div class="card text-white border-success">
                 <div class="card-header bg-success">Félicitations {{ order.email }} !</div>
                 <div class="card-body text-success">
-                    <h5 class="card-title">Votre commande {{ order.ref }} d'un montant de {{ order.totalPrice }}€ a été validée :)</h5>
+                    <h5 class="card-title">Votre commande <b>{{ order.ref }}</b> d'un montant de {{ order.totalPrice }}€ a été validée :)</h5>
                     <p class="card-text">Vous allez prochainement recevoir un email contenant les informations liés à votre commande.</p>
                     <div class="mb-3">
                         <img src="{{ asset('icon-valid.png') }}" class="img-fluid" alt="Responsive image">
