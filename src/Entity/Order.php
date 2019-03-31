@@ -17,6 +17,8 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 class Order
 {
+    const TYPE_DEMI_JOURNEE = "Demi-journée";
+    const TYPE_JOURNEE = "Journée";
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

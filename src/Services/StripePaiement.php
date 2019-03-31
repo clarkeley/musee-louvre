@@ -39,7 +39,7 @@ class StripePaiement
         try
         {
             $charge = \Stripe\Charge::create(array(
-                "amount" => $amount * 10000,
+                "amount" => $amount * 100,
                 "currency" => 'eur',
                 "source" => $token,
                 "description" => $description

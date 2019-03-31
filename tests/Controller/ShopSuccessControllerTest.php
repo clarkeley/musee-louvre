@@ -2,15 +2,16 @@
 
 namespace App\Tests;
 
+use App\Controller\ShopSuccessController;
 use App\Entity\Order;
 use App\Entity\Ticket;
+use App\Exception\NoCurrentOrderException;
 use App\Manager\OrderManager;
-use App\Services\StripePaiement;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class BasketControllerTest extends WebTestCase
+class ShopSuccessControllerTest extends WebTestCase
 {
-    public function testPay()
+    public function testShowSuccess()
     {
         $client = static::createClient();
 
@@ -30,20 +31,21 @@ class BasketControllerTest extends WebTestCase
         $tickets = new Ticket();
 
         $tickets->setPrenom('toto')
-                ->setNom('Toto')
-                ->setPays('FR')
-                ->setAnniversaire(new \DateTime('1995-05-19'));
+            ->setNom('Toto')
+            ->setPays('FR')
+            ->setAnniversaire(new \DateTime('1995-05-19'));
 
         $session->set(OrderManager::SESSION_KEY, $tickets);
 
         $session->save();
 
-        $orderManager = $this->createMock(OrderManager::SESSION_KEY);
+        $showSuccess = $this->createMock(ShopSuccessController::class);
 
-        $orderManager->expects($this->once())->method("pay")->willReturn($order);
+        //$showSuccess->expects($this->once())->method("showSucess")->willReturn();
 
-        $this->assertEquals(true, $orderManager);
-
-        //$this->assertEquals('true', $orderManager->method(pay));
+        try {
+            $this->assertEquals(true, $showSuccess->showSuccess()->isSuccessful());
+        } catch (NoCurrentOrderException $e) {
+        }
     }
 }

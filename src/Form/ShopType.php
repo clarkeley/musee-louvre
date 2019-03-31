@@ -14,8 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class ShopType extends AbstractType
 {
-    const BILLET1 = 'Demi-journée';
-    const BILLET2 = 'Journée';
+
 
     /**
      * @param FormBuilderInterface $builder
@@ -30,8 +29,8 @@ class ShopType extends AbstractType
 
             ->add('type', ChoiceType::class, [
                 'choices' => [
-                    'Demi-journée' => self::BILLET1,
-                    'Journée' => self::BILLET2
+                    'Demi-journée' => Order::TYPE_DEMI_JOURNEE,
+                    'Journée' => Order::TYPE_JOURNEE
                 ],
                 'expanded' => true,
                 'multiple' => false,

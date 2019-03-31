@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityManager;
 
 class NoFullTicketValidator extends ConstraintValidator
 {
-    const MAX_AVAILABLE_TICKETS = 11;
+    const MAX_AVAILABLE_TICKETS = 1000;
 
     /**
      * @var OrderRepository

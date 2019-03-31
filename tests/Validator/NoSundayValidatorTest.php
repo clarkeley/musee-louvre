@@ -8,17 +8,31 @@
 
 namespace App\Tests\Validator;
 
+use App\Validator\NoSunday;
 use App\Validator\NoSundayValidator;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
-use Symfony\Component\Validator\Tests\Validator\AbstractValidatorTest;
 
-class NoSundayValidatorTest  extends ConstraintValidatorTestCase
+class NoSundayValidatorTest extends ConstraintValidatorTestCase
 {
-
     protected function createValidator()
     {
-        $this->validator->validate($value, new NoSundayValidator());
+        return new NoSundayValidator();
+    }
+
+    public function testValidDate()
+    {
+        $this->validator->validate(new \DateTime("2019-03-27"), new NoSunday());
 
         $this->assertNoViolation();
     }
+
+    public function testInvalidDate()
+    {
+        $this->validator->validate(new \DateTime("2019-03-31"), new NoSunday());
+
+        $this->assertFalse(false);
+
+    }
+
 }

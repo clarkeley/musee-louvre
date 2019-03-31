@@ -113,8 +113,14 @@ class OrderManager
                 $ticket->setReduction(false);
             }
 
+            if($order->getType() === Order::TYPE_DEMI_JOURNEE){
+                    $ticket->setPrice($ticket->getPrice()/2);
+            }
+
             $totalPrice += $ticket->getPrice();
         }
+
+
 
         $order->setTotalPrice($totalPrice);
     }
