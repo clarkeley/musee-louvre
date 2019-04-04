@@ -35,18 +35,22 @@ class OrderManagerTest extends TestCase
             ["2019-01-01", Order::TYPE_JOURNEE, "1995-01-01", false, 16],
             ["2019-01-01", Order::TYPE_JOURNEE, "1995-01-01", true, 10],
             ["2019-01-01", Order::TYPE_DEMI_JOURNEE, "1995-01-01", true, 5],
+            // Ticket enfant de moins de 4 ans
             ["2019-01-01", Order::TYPE_JOURNEE, "2017-01-01", false, 0],
             ["2019-01-01", Order::TYPE_DEMI_JOURNEE, "2017-01-01", false, 0],
             ["2019-01-01", Order::TYPE_JOURNEE, "2017-01-01", true, 0],
             ["2019-01-01", Order::TYPE_DEMI_JOURNEE, "2017-01-01", true, 0],
+            // Ticket enfant de moins de 12 ans
             ["2019-01-01", Order::TYPE_JOURNEE, "2009-01-01", false, 8],
             ["2019-01-01", Order::TYPE_DEMI_JOURNEE, "2009-01-01", false, 4],
             ["2019-01-01", Order::TYPE_JOURNEE, "2009-01-01", true, 8],
             ["2019-01-01", Order::TYPE_DEMI_JOURNEE, "2009-01-01", true, 4],
+            // Ticket enfants et adulte de moins de 60 ans
             ["2019-01-01", Order::TYPE_JOURNEE, "1999-01-01", false, 16],
             ["2019-01-01", Order::TYPE_DEMI_JOURNEE, "1999-01-01", false, 8],
             ["2019-01-01", Order::TYPE_JOURNEE, "1999-01-01", true, 10],
             ["2019-01-01", Order::TYPE_DEMI_JOURNEE, "1999-01-01", true, 5],
+            // Ticket adulte de plus de 60 ans
             ["2019-01-01", Order::TYPE_JOURNEE, "1930-01-01", false, 12],
             ["2019-01-01", Order::TYPE_DEMI_JOURNEE, "1930-01-01", false, 6],
             ["2019-01-01", Order::TYPE_JOURNEE, "1930-01-01", true, 10],

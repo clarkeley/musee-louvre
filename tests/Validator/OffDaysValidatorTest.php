@@ -2,6 +2,7 @@
 
 namespace App\Tests;
 
+use App\Validator\OffDays;
 use App\Validator\OffDaysValidator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -16,10 +17,15 @@ class OffDaysValidatorTest extends ConstraintValidatorTestCase
 
     public function testOffDay()
     {
-        $date = "01-01-2019";
-
-        $this->validator->validate($date, new DateTime());
+        $this->validator->validate(new \DateTime("2020-01-02"), new OffDays());
 
         $this->assertNoViolation();
+    }
+
+    public function testWrongDay()
+    {
+        $this->validator->validate(new \DateTime("2020-11-11"), new OffDays());
+
+        $this->assertFalse(false);
     }
 }
