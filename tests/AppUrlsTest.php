@@ -10,6 +10,8 @@ class AppUrlsTest extends WebTestCase
 {
     /**
      * @dataProvider urlProvider
+     * @param $url
+     * @param $expectedStatus
      */
     public function testPageIsSuccessful($url, $expectedStatus)
     {

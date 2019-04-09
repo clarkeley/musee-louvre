@@ -22,9 +22,9 @@ class ContactControllerTest extends WebTestCase
         $buttonCrawlerNode = $crawler->selectButton('Envoyer');
 
         $form = $buttonCrawlerNode->form([
-            'contact[username]' => 'Toto',
-            'contact[from]' => 'toto@gmail.com',
-            'contact[message]' => 'message',
+            'contact[Pseudo]' => 'Toto',
+            'contact[Email]' => 'toto@gmail.com',
+            'contact[Message]' => 'message',
         ]);
 
         $client->submit($form);

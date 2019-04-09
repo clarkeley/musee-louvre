@@ -34,7 +34,7 @@ class BasketController extends Controller{
                 $entityManager->persist($order);
                 $entityManager->flush();
 
-                $this->addFlash('success', 'Order Complete !');
+                $this->addFlash('success', 'Succès !');
 
                 return $this->redirectToRoute('success');
             }else{

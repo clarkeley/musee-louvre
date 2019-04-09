@@ -34,6 +34,7 @@
             $form->handleRequest($request);
 
             if ($this->formHandler->handle($form)) {
+                $this->addFlash('success', 'Message envoyé !');
                 return $this->redirectToRoute('contact');
             }
             

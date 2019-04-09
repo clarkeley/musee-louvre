@@ -23,7 +23,6 @@ class NoFullDayValidator extends ConstraintValidator
             {
                 /** @var NoFullDay $constraint */
                 $this->context->buildViolation($constraint->message)
-                    ->setParameter('{{ string }}', $value)
                     ->addViolation();
             }
         }

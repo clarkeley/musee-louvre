@@ -26,6 +26,8 @@ class OffDaysValidatorTest extends ConstraintValidatorTestCase
     {
         $this->validator->validate(new \DateTime("2020-11-11"), new OffDays());
 
-        $this->assertFalse(false);
+        $constraint = new OffDays();
+
+        $this->buildViolation($constraint->message)->assertRaised();
     }
 }

@@ -20,7 +20,6 @@ class NoTuesdayValidator extends ConstraintValidator
 
             /** @var NoTuesday $constraint */
             $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ value }}', $value)
                 ->addViolation();
         }
     }
